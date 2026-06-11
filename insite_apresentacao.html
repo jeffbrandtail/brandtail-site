@@ -1,0 +1,585 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+:root{
+  --navy:#0B2545;--navy2:#13315C;--navy-deep:#061833;
+  --orange:#F97316;--orange-h:#EA580C;
+  --silver:#F3F4F6;--ink:#0F172A;--muted:#64748B;
+  --line:#E2E8F0;--paper:#FAFAF9;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#1a1a2e;}
+.deck{width:100%;max-width:900px;margin:0 auto;}
+.slide{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin-bottom:12px;position:relative;display:flex;flex-direction:column;}
+
+/* NAV */
+.slide-nav{display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap;}
+.snav-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;border:none;transition:all .2s;}
+.snav-dot.active{background:var(--orange);transform:scale(1.3);}
+.slide-counter{color:rgba(255,255,255,.4);font-size:12px;font-family:'JetBrains Mono';text-align:center;margin-bottom:8px;}
+
+/* SLIDE WRAPPER */
+.slide-wrap{display:none;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;position:relative;}
+.slide-wrap.active{display:block;}
+
+/* ─── SLIDE 1: CAPA ─── */
+.s1{background:linear-gradient(135deg,#0B2545 0%,#061833 100%);display:flex;align-items:center;justify-content:center;position:relative;}
+.s1-bg{position:absolute;inset:0;opacity:.07;}
+.s1-content{position:relative;z-index:2;text-align:center;padding:40px;}
+.s1-tag{font-family:'JetBrains Mono';font-size:11px;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px;justify-content:center;}
+.s1-tag::before,.s1-tag::after{content:"";width:32px;height:1px;background:var(--orange);opacity:.6;}
+.s1-logo{font-family:'Manrope';font-size:72px;font-weight:900;color:#fff;letter-spacing:-3px;line-height:1;}
+.s1-logo span{color:var(--orange);}
+.s1-tagline{font-size:18px;color:rgba(255,255,255,.6);margin-top:16px;font-weight:400;letter-spacing:.3px;}
+.s1-brand{position:absolute;bottom:28px;right:36px;display:flex;align-items:center;gap:8px;opacity:.5;}
+.s1-brand-text{font-family:'Manrope';font-size:13px;color:#fff;font-weight:700;}
+.s1-brand-text em{color:var(--orange);font-style:normal;}
+.s1-sub{font-size:13px;color:rgba(255,255,255,.35);margin-top:10px;font-family:'JetBrains Mono';letter-spacing:1px;}
+
+/* ─── SLIDE 2: O PROBLEMA ─── */
+.s2{background:var(--silver);display:flex;flex-direction:column;padding:48px 52px;}
+.eyebrow{font-family:'Inter';font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:10px;}
+.s2 h2{font-family:'Manrope';font-size:34px;font-weight:900;color:var(--navy);letter-spacing:-1px;margin-bottom:32px;}
+.s2 h2 span{color:var(--orange);}
+.prob-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;flex:1;}
+.pc-card{background:#fff;border-radius:14px;border:1px solid var(--line);padding:22px 20px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;}
+.pc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;}
+.pc-card.c1::before{background:#EF4444;}
+.pc-card.c2::before{background:#F97316;}
+.pc-card.c3::before{background:#8B5CF6;}
+.pc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:6px;}
+.pc-icon.r{background:rgba(239,68,68,.1);}
+.pc-icon.o{background:rgba(249,115,22,.1);}
+.pc-icon.p{background:rgba(139,92,246,.1);}
+.pc-num{font-family:'Manrope';font-size:28px;font-weight:900;line-height:1;}
+.pc-num.r{color:#EF4444;}
+.pc-num.o{color:#F97316;}
+.pc-num.p{color:#8B5CF6;}
+.pc-label{font-size:13px;color:var(--muted);font-weight:500;line-height:1.4;}
+.pc-title{font-family:'Manrope';font-size:15px;font-weight:800;color:var(--navy);margin-top:4px;}
+
+/* ─── SLIDE 3: CUSTO INVISÍVEL ─── */
+.s3{background:linear-gradient(160deg,#0B2545,#061833);display:flex;align-items:center;padding:52px 60px;gap:52px;}
+.s3-left{flex:1;}
+.s3-left h2{font-family:'Manrope';font-size:38px;font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:16px;}
+.s3-left h2 span{color:var(--orange);}
+.s3-left p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.6;}
+.s3-metrics{flex:1;display:flex;flex-direction:column;gap:16px;}
+.s3-metric{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;}
+.s3-metric-num{font-family:'Manrope';font-size:52px;font-weight:900;line-height:1;color:#fff;}
+.s3-metric-num span{color:var(--orange);}
+.s3-metric-info h4{font-family:'Manrope';font-size:16px;font-weight:700;color:#fff;margin-bottom:4px;}
+.s3-metric-info p{font-size:12px;color:rgba(255,255,255,.45);line-height:1.4;}
+.s3-metric-icon{width:44px;height:44px;border-radius:12px;background:rgba(249,115,22,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* ─── SLIDE 4: ANTES vs DEPOIS ─── */
+.s4{display:flex;}
+.s4-before{flex:1;background:#FFF5F5;padding:36px 32px;display:flex;flex-direction:column;}
+.s4-after{flex:1;background:#F0FDF4;padding:36px 32px;display:flex;flex-direction:column;}
+.s4-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;width:fit-content;}
+.s4-before .s4-badge{background:#FEE2E2;color:#DC2626;}
+.s4-after .s4-badge{background:#DCFCE7;color:#16A34A;}
+.s4-title{font-family:'Manrope';font-size:20px;font-weight:900;margin-bottom:16px;}
+.s4-before .s4-title{color:#7F1D1D;}
+.s4-after .s4-title{color:#14532D;}
+.s4-items{display:flex;flex-direction:column;gap:10px;flex:1;}
+.s4-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:10px;}
+.s4-before .s4-item{background:#FEE2E2;}
+.s4-after .s4-item{background:#DCFCE7;}
+.s4-item-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
+.s4-before .s4-item-icon{background:rgba(220,38,38,.15);color:#DC2626;}
+.s4-after .s4-item-icon{background:rgba(22,163,74,.15);color:#16A34A;}
+.s4-item-text{font-size:12px;line-height:1.4;font-weight:500;}
+.s4-before .s4-item-text{color:#7F1D1D;}
+.s4-after .s4-item-text{color:#14532D;}
+.s4-divider{width:4px;background:linear-gradient(180deg,#0B2545,#F97316);position:relative;display:flex;align-items:center;justify-content:center;}
+.s4-vs{width:32px;height:32px;border-radius:50%;background:#0B2545;color:var(--orange);font-family:'Manrope';font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;z-index:2;flex-shrink:0;}
+
+/* ─── SLIDE 5: A SOLUÇÃO ─── */
+.s5{background:linear-gradient(140deg,#0B2545 0%,#061833 100%);display:flex;align-items:center;justify-content:center;padding:52px;}
+.s5-inner{display:flex;align-items:center;gap:60px;width:100%;}
+.s5-left{flex:1;}
+.s5-tag{font-family:'JetBrains Mono';font-size:10px;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.s5-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange);}
+.s5-logo{font-family:'Manrope';font-size:56px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:1;margin-bottom:12px;}
+.s5-logo span{color:var(--orange);}
+.s5-tagline{font-size:22px;color:rgba(255,255,255,.7);line-height:1.3;margin-bottom:20px;font-weight:400;}
+.s5-tagline strong{color:#fff;}
+.s5-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--orange);font-weight:600;}
+.s5-right{flex:1.1;}
+.browser-mock{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 24px 60px -16px rgba(0,0,0,.6);}
+.bm-bar{height:32px;background:#F8FAFC;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:5px;padding:0 10px;}
+.bm-dot{width:7px;height:7px;border-radius:50%;}
+.bm-url{margin-left:7px;flex:1;height:18px;background:#fff;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;padding:0 7px;font-family:'JetBrains Mono';font-size:9px;color:var(--muted);}
+.bm-body{padding:12px;}
+.bm-product-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+.bm-product{background:#F8FAFC;border-radius:7px;padding:8px;position:relative;}
+.bm-product-img{height:44px;background:linear-gradient(135deg,#E2E8F0,#CBD5E1);border-radius:5px;margin-bottom:6px;}
+.bm-product-name{font-size:9px;font-weight:600;color:var(--navy);margin-bottom:2px;}
+.bm-product-price{font-family:'JetBrains Mono';font-size:11px;font-weight:700;color:var(--navy);}
+.bm-overlay{position:absolute;bottom:5px;right:5px;background:var(--orange);border-radius:4px;padding:2px 5px;font-family:'JetBrains Mono';font-size:8px;color:#fff;font-weight:700;}
+.bm-overlay.green{background:#10B981;}
+.bm-overlay.red{background:#EF4444;}
+.bm-overlay.gray{background:#94A3B8;}
+
+/* ─── SLIDE 6: COMO FUNCIONA ─── */
+.s6{background:var(--silver);padding:44px 52px;display:flex;flex-direction:column;}
+.s6 h2{font-family:'Manrope';font-size:34px;font-weight:900;color:var(--navy);letter-spacing:-1px;margin-bottom:8px;}
+.s6 h2 span{color:var(--orange);}
+.s6-sub{font-size:13px;color:var(--muted);margin-bottom:32px;}
+.s6-steps{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:center;flex:1;}
+.s6-step{background:#fff;border-radius:16px;border:1px solid var(--line);padding:24px 20px;height:100%;display:flex;flex-direction:column;gap:8px;position:relative;}
+.s6-step-num{font-family:'JetBrains Mono';font-size:10px;color:var(--orange);font-weight:700;letter-spacing:2px;}
+.s6-step-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(11,37,69,.08),rgba(11,37,69,.04));display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+.s6-step h3{font-family:'Manrope';font-size:17px;font-weight:800;color:var(--navy);}
+.s6-step p{font-size:12px;color:var(--muted);line-height:1.5;}
+.s6-step-note{font-size:10px;color:var(--orange);font-weight:600;display:flex;align-items:center;gap:4px;margin-top:auto;}
+.s6-arrow{display:flex;align-items:center;justify-content:center;}
+.s6-arrow svg{color:var(--orange);}
+.s6-step.highlight{border-color:var(--orange);background:linear-gradient(135deg,rgba(249,115,22,.03),#fff);}
+.s6-step.highlight::after{content:"✦";position:absolute;top:12px;right:14px;color:var(--orange);font-size:12px;}
+
+/* ─── SLIDE 7: PARA QUEM É ─── */
+.s7{background:linear-gradient(160deg,#0B2545,#061833);padding:44px 52px;display:flex;flex-direction:column;}
+.s7 h2{font-family:'Manrope';font-size:34px;font-weight:900;color:#fff;letter-spacing:-1px;margin-bottom:28px;}
+.s7 h2 span{color:var(--orange);}
+.s7-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;flex:1;}
+.persona-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:all .2s;}
+.persona-card:hover{background:rgba(255,255,255,.07);border-color:rgba(249,115,22,.3);}
+.persona-avatar{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Manrope';font-size:18px;font-weight:900;color:#fff;flex-shrink:0;}
+.persona-avatar.p1{background:linear-gradient(135deg,#6366F1,#8B5CF6);}
+.persona-avatar.p2{background:linear-gradient(135deg,#F97316,#EA580C);}
+.persona-avatar.p3{background:linear-gradient(135deg,#10B981,#059669);}
+.persona-role{font-family:'JetBrains Mono';font-size:9px;letter-spacing:2px;color:var(--orange);text-transform:uppercase;font-weight:600;}
+.persona-name{font-family:'Manrope';font-size:16px;font-weight:800;color:#fff;}
+.persona-pain{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;font-style:italic;}
+.persona-pain::before{content:'"';}
+.persona-pain::after{content:'"';}
+.persona-gain{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.7);font-weight:500;margin-top:4px;}
+.persona-gain::before{content:"→";color:var(--orange);}
+
+/* ─── SLIDE 8: RESULTADO ─── */
+.s8{background:var(--silver);display:flex;align-items:center;justify-content:center;padding:52px;}
+.s8-inner{text-align:center;max-width:640px;}
+.s8 .eyebrow{text-align:center;display:block;margin-bottom:16px;}
+.s8-claim{font-family:'Manrope';font-size:20px;font-weight:400;color:var(--muted);line-height:1.5;margin-bottom:20px;}
+.s8-claim strong{color:var(--navy);font-weight:800;}
+.s8-number{font-family:'Manrope';font-size:100px;font-weight:900;color:var(--orange);line-height:.9;letter-spacing:-4px;}
+.s8-number-unit{font-size:28px;color:var(--navy);}
+.s8-desc{font-size:16px;color:var(--navy);font-weight:600;margin-top:8px;}
+.s8-divider{width:60px;height:3px;background:var(--orange);margin:20px auto;}
+.s8-twist{font-size:15px;color:var(--muted);font-style:italic;line-height:1.5;}
+.s8-twist strong{color:var(--navy);font-style:normal;}
+
+/* ─── SLIDE 9: CTA ─── */
+.s9{background:linear-gradient(140deg,#0B2545 0%,#061833 100%);display:flex;align-items:center;justify-content:center;padding:52px;position:relative;}
+.s9-glow{position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.18),transparent 70%);pointer-events:none;}
+.s9-glow2{position:absolute;bottom:-60px;left:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.12),transparent 70%);pointer-events:none;}
+.s9-inner{position:relative;z-index:2;text-align:center;max-width:600px;}
+.s9-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);border-radius:20px;padding:6px 16px;font-size:11px;color:var(--orange);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;}
+.s9-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);}
+.s9 h2{font-family:'Manrope';font-size:40px;font-weight:900;color:#fff;letter-spacing:-1.5px;margin-bottom:10px;line-height:1.1;}
+.s9 h2 span{color:var(--orange);}
+.s9-sub{font-size:15px;color:rgba(255,255,255,.55);margin-bottom:32px;line-height:1.5;}
+.cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.cta-primary{background:var(--orange);color:#fff;padding:14px 28px;border-radius:12px;font-weight:700;font-size:15px;font-family:'Inter';border:none;cursor:pointer;display:flex;align-items:center;gap:8px;}
+.cta-secondary{background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);padding:14px 28px;border-radius:12px;font-weight:600;font-size:14px;font-family:'Inter';border:1px solid rgba(255,255,255,.12);cursor:pointer;display:flex;align-items:center;gap:8px;}
+.s9-footnote{margin-top:28px;font-size:11px;color:rgba(255,255,255,.25);font-family:'JetBrains Mono';}
+.s9-brandtail{margin-top:20px;font-family:'Manrope';font-size:13px;color:rgba(255,255,255,.3);font-weight:700;}
+.s9-brandtail span{color:rgba(249,115,22,.5);}
+
+/* ─── NAVEGAÇÃO PREV/NEXT ─── */
+.deck-controls{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:0 4px;}
+.deck-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);padding:8px 20px;border-radius:8px;font-size:13px;font-family:'Inter';font-weight:500;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px;}
+.deck-btn:hover{background:rgba(249,115,22,.2);border-color:var(--orange);color:#fff;}
+.deck-btn:disabled{opacity:.2;cursor:not-allowed;}
+.slide-label{font-family:'JetBrains Mono';font-size:11px;color:rgba(255,255,255,.3);}
+</style>
+
+<div class="deck">
+  <div class="slide-counter" id="counter">01 / 09</div>
+  <div class="slide-nav" id="nav"></div>
+
+  <!-- SLIDE 1: CAPA -->
+  <div class="slide-wrap active" id="s1">
+    <div class="slide s1" style="height:100%;">
+      <svg class="s1-bg" viewBox="0 0 900 506" preserveAspectRatio="xMidYMid slice">
+        <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0L0 0 0 40" fill="none" stroke="white" stroke-width="0.4"/></pattern></defs>
+        <rect width="900" height="506" fill="url(#grid)"/>
+        <circle cx="720" cy="100" r="180" fill="rgba(249,115,22,.06)"/>
+        <circle cx="150" cy="420" r="120" fill="rgba(99,102,241,.04)"/>
+      </svg>
+      <div class="s1-content">
+        <div class="s1-tag">Varejo · Indústria · E-commerce</div>
+        <div class="s1-logo">In<span>.</span>Site</div>
+        <div class="s1-tagline">Democratize os dados de competitividade em qualquer site</div>
+        <div class="s1-sub">by BrandTail.AI — Pricing &amp; Trade Solutions</div>
+      </div>
+      <div class="s1-brand">
+        <svg width="20" height="20" viewBox="0 0 60 60"><rect width="60" height="60" rx="10" fill="#F97316"/><path d="M16 14H32a8 8 0 010 16H16ZM16 30H34a8 8 0 010 16H16Z" fill="white"/></svg>
+        <div class="s1-brand-text">BrandTail<em>.AI</em></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: O PROBLEMA -->
+  <div class="slide-wrap" id="s2">
+    <div class="slide s2" style="height:100%;">
+      <div class="eyebrow">O Problema</div>
+      <h2>O time comercial está <span>voando às cegas</span></h2>
+      <div class="prob-cards">
+        <div class="pc-card c1">
+          <div class="pc-icon r">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="pc-num r">3h</div>
+          <div class="pc-title">por dia perdidas</div>
+          <div class="pc-label">Analistas gastam 3 horas conferindo preços de concorrentes manualmente</div>
+        </div>
+        <div class="pc-card c2">
+          <div class="pc-icon o">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div class="pc-num o">3 dias</div>
+          <div class="pc-title">para análise de banners</div>
+          <div class="pc-label">3 dias para mapear a competitividade de todos os banners da home</div>
+        </div>
+        <div class="pc-card c3">
+          <div class="pc-icon p">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="pc-num p">0%</div>
+          <div class="pc-title">de visibilidade em tempo real</div>
+          <div class="pc-label">Nenhuma visão de competitividade durante a navegação do consumidor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: CUSTO INVISÍVEL -->
+  <div class="slide-wrap" id="s3">
+    <div class="slide s3" style="height:100%;">
+      <div class="s3-left">
+        <div class="eyebrow" style="color:var(--orange)">Custo Invisível</div>
+        <h2>Quanto <span>custa</span><br>não saber?</h2>
+        <p>Cada hora sem dados de competitividade é uma decisão comercial tomada no escuro — banners errados, promoções desafiadas, margem perdida.</p>
+      </div>
+      <div class="s3-metrics">
+        <div class="s3-metric">
+          <div class="s3-metric-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="s3-metric-num"><span>15h</span></div>
+          <div class="s3-metric-info">
+            <h4>por semana em pesquisa manual</h4>
+            <p>3h/dia × 5 dias — tempo que poderia ser em análise estratégica</p>
+          </div>
+        </div>
+        <div class="s3-metric">
+          <div class="s3-metric-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round"><path d="M3 3h18v4H3zM3 10h18v4H3zM3 17h18v4H3z"/></svg>
+          </div>
+          <div class="s3-metric-num" style="font-size:38px;"><span>+60</span></div>
+          <div class="s3-metric-info">
+            <h4>banners sem análise competitiva</h4>
+            <p>A home muda toda semana — sem dados, o time reage tarde demais</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: ANTES vs DEPOIS -->
+  <div class="slide-wrap" id="s4">
+    <div class="slide s4" style="height:100%;">
+      <div class="s4-before">
+        <div class="s4-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          Antes do In.Site
+        </div>
+        <div class="s4-title">O caos do dia a dia</div>
+        <div class="s4-items">
+          <div class="s4-item">
+            <div class="s4-item-icon">📸</div>
+            <div class="s4-item-text">Prints de tela do site do concorrente no grupo de WhatsApp</div>
+          </div>
+          <div class="s4-item">
+            <div class="s4-item-icon">📊</div>
+            <div class="s4-item-text">Planilhas manuais atualizadas por um analista dedicado</div>
+          </div>
+          <div class="s4-item">
+            <div class="s4-item-icon">⏳</div>
+            <div class="s4-item-text">3 dias para ter a competitividade dos banners da home</div>
+          </div>
+          <div class="s4-item">
+            <div class="s4-item-icon">🔀</div>
+            <div class="s4-item-text">Dados defasados na hora da decisão comercial</div>
+          </div>
+          <div class="s4-item">
+            <div class="s4-item-icon">👀</div>
+            <div class="s4-item-text">Cada pessoa vê um recorte diferente — sem visão centralizada</div>
+          </div>
+        </div>
+      </div>
+      <div class="s4-divider">
+        <div class="s4-vs">VS</div>
+      </div>
+      <div class="s4-after">
+        <div class="s4-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          Com o In.Site
+        </div>
+        <div class="s4-title">Clareza em segundos</div>
+        <div class="s4-items">
+          <div class="s4-item">
+            <div class="s4-item-icon">🔌</div>
+            <div class="s4-item-text">Plugin instalado no navegador — sem infraestrutura extra</div>
+          </div>
+          <div class="s4-item">
+            <div class="s4-item-icon">📤</div>
+            <div class="s4-item-text">Upload dos dados da pesquisa de preços uma vez por semana</div>
+          </div>
+          <div class="s4-item">
+            <div class="s4-item-icon">⚡</div>
+            <div class="s4-item-text">Dados de competitividade sobrepostos enquanto você navega</div>
+          </div>
+          <div class="s4-item">
+            <div class="s4-item-icon">🔒</div>
+            <div class="s4-item-text">Dados privados — só você tem acesso ao overlay</div>
+          </div>
+          <div class="s4-item">
+            <div class="s4-item-icon">🎯</div>
+            <div class="s4-item-text">Analise qualquer banner ou SKU em menos de 3 segundos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: A SOLUÇÃO -->
+  <div class="slide-wrap" id="s5">
+    <div class="slide s5" style="height:100%;">
+      <div class="s5-inner">
+        <div class="s5-left">
+          <div class="s5-tag">A solução</div>
+          <div class="s5-logo">In<span>.</span>Site</div>
+          <div class="s5-tagline"><strong>Transforme qualquer site</strong><br>num cockpit analítico</div>
+          <div class="s5-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Plugin de navegador · Dados privados · Zero infra
+          </div>
+        </div>
+        <div class="s5-right">
+          <div class="browser-mock">
+            <div class="bm-bar">
+              <div class="bm-dot" style="background:#EF4444"></div>
+              <div class="bm-dot" style="background:#F59E0B"></div>
+              <div class="bm-dot" style="background:#10B981"></div>
+              <div class="bm-url">www.concorrente.com.br/protetor-solar</div>
+            </div>
+            <div class="bm-body">
+              <div style="background:#F1F5F9;border-radius:6px;padding:7px 10px;margin-bottom:10px;display:flex;align-items:center;gap:7px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                <span style="font-family:'JetBrains Mono';font-size:10px;color:#0B2545;">protetor solar fps 50</span>
+              </div>
+              <div class="bm-product-grid">
+                <div class="bm-product">
+                  <div class="bm-product-img"></div>
+                  <div class="bm-product-name">Neutrogena FPS50</div>
+                  <div class="bm-product-price">R$42,90</div>
+                  <div class="bm-overlay red">-8%</div>
+                </div>
+                <div class="bm-product" style="border:2px solid #F97316;">
+                  <div class="bm-product-img" style="background:linear-gradient(135deg,rgba(249,115,22,.15),rgba(249,115,22,.05));"></div>
+                  <div class="bm-product-name" style="color:#F97316;">La Roche FPS60</div>
+                  <div class="bm-product-price" style="color:#F97316;">R$67,90</div>
+                  <div class="bm-overlay" style="background:#F97316;">+12%</div>
+                </div>
+                <div class="bm-product">
+                  <div class="bm-product-img"></div>
+                  <div class="bm-product-name">Isdin FPS50+</div>
+                  <div class="bm-product-price">R$89,00</div>
+                  <div class="bm-overlay green">par</div>
+                </div>
+              </div>
+              <div style="margin-top:8px;background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.2);border-radius:7px;padding:7px 10px;display:flex;align-items:center;gap:6px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:#F97316;flex-shrink:0;"></div>
+                <span style="font-size:9px;color:#0B2545;font-weight:600;font-family:'Inter';">In.Site: 3 SKUs monitorados · Posição média: +4% acima do mercado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: COMO FUNCIONA -->
+  <div class="slide-wrap" id="s6">
+    <div class="slide s6" style="height:100%;">
+      <div class="eyebrow">Como funciona</div>
+      <h2>3 passos para <span>ver tudo</span></h2>
+      <div class="s6-sub">Instalação em 2 minutos. Dados na tela em menos de 5.</div>
+      <div class="s6-steps">
+        <div class="s6-step">
+          <div class="s6-step-num">01</div>
+          <div class="s6-step-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="3" fill="rgba(11,37,69,.12)"/></svg>
+          </div>
+          <h3>Instalar</h3>
+          <p>Plugin instalado localmente no navegador Chrome. Sem servidor, sem dados na nuvem.</p>
+          <div class="s6-step-note">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10M12 22v-10M4.93 4.93l7.07 7.07M19.07 19.07l-7.07-7.07M2 12h10M22 12h-10M4.93 19.07l7.07-7.07M19.07 4.93l-7.07 7.07"/></svg>
+            2 minutos para instalar
+          </div>
+        </div>
+        <div class="s6-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="s6-step highlight">
+          <div class="s6-step-num">02</div>
+          <div class="s6-step-icon" style="background:rgba(249,115,22,.1);">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <h3>Upload dos dados</h3>
+          <p>Faça upload da sua pesquisa de preços. Não tem pesquisa? Contrate com a BrandTail.AI.</p>
+          <div class="s6-step-note" style="color:#F97316;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Contrate pesquisa com BrandTail.AI
+          </div>
+        </div>
+        <div class="s6-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="s6-step">
+          <div class="s6-step-num">03</div>
+          <div class="s6-step-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3>Democratizar</h3>
+          <p>Navegue em qualquer site e veja os dados de competitividade sobrepostos por SKU em tempo real.</p>
+          <div class="s6-step-note">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            Só você vê os dados
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: PARA QUEM É -->
+  <div class="slide-wrap" id="s7">
+    <div class="slide s7" style="height:100%;">
+      <div class="eyebrow" style="color:var(--orange)">Para quem é</div>
+      <h2>Quem <span>ganha tempo</span> e decisão</h2>
+      <div class="s7-grid">
+        <div class="persona-card">
+          <div class="persona-avatar p1">P</div>
+          <div class="persona-role">Pricing</div>
+          <div class="persona-name">Analista &amp; Coord. &amp; Gerente de Pricing</div>
+          <div class="persona-pain">Preciso saber a competitividade por SKU sem passar horas em planilha</div>
+          <div class="persona-gain">Vê posição competitiva por produto em segundos, no próprio site</div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-avatar p2">C</div>
+          <div class="persona-role">Comercial</div>
+          <div class="persona-name">Analista &amp; Coord. &amp; Gerente Comercial</div>
+          <div class="persona-pain">Não consigo avaliar se o banner que montei está competitivo antes de ir ao ar</div>
+          <div class="persona-gain">Valida competitividade de banners em tempo real antes de publicar</div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-avatar p3">T</div>
+          <div class="persona-role">Trade Marketing</div>
+          <div class="persona-name">Analista &amp; Coord. &amp; Gerente de Trade</div>
+          <div class="persona-pain">Negocio com a indústria sem ter dados de como a marca performa no digital</div>
+          <div class="persona-gain">Leva dados concretos de share de tela para a mesa de negociação</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: RESULTADO -->
+  <div class="slide-wrap" id="s8">
+    <div class="slide s8" style="height:100%;">
+      <div class="s8-inner">
+        <div class="eyebrow">O resultado</div>
+        <div class="s8-claim">Se hoje você leva <strong>mais de 3 segundos</strong> para ver a competitividade<br>de qualquer produto no site do concorrente...</div>
+        <div class="s8-number">3<span class="s8-number-unit">s</span></div>
+        <div class="s8-desc">é tudo que você vai precisar com o In.Site</div>
+        <div class="s8-divider"></div>
+        <div class="s8-twist">O <strong>In.Site foi feito para você.</strong><br>Se você já analisa em menos de 3 segundos — parabéns. Você não precisa de nós.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: CTA -->
+  <div class="slide-wrap" id="s9">
+    <div class="slide s9" style="height:100%;">
+      <div class="s9-glow"></div>
+      <div class="s9-glow2"></div>
+      <div class="s9-inner">
+        <div class="s9-badge">Oferta de lançamento</div>
+        <h2>Comece seu<br><span>trial de 7 dias</span></h2>
+        <div class="s9-sub">Instale, faça upload dos seus dados e veja a competitividade do seu negócio em menos de 5 minutos. Sem cartão de crédito.</div>
+        <div class="cta-buttons">
+          <button class="cta-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Instalar grátis — 7 dias
+          </button>
+          <button class="cta-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Falar com a BrandTail.AI
+          </button>
+        </div>
+        <div class="s9-footnote">Não tem pesquisa de preços? Contrate com a BrandTail.AI e comece hoje.</div>
+        <div class="s9-brandtail">by <span>BrandTail<em style="color:var(--orange);font-style:normal;">.AI</em></span> — Pricing &amp; Trade Solutions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deck-controls">
+    <button class="deck-btn" id="prev" onclick="changeSlide(-1)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Anterior
+    </button>
+    <span class="slide-label" id="slide-title">Capa</span>
+    <button class="deck-btn" id="next" onclick="changeSlide(1)">
+      Próximo
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+const slides = [
+  {id:'s1',label:'Capa — In.Site'},
+  {id:'s2',label:'O Problema'},
+  {id:'s3',label:'Custo Invisível'},
+  {id:'s4',label:'Antes vs Depois'},
+  {id:'s5',label:'A Solução'},
+  {id:'s6',label:'Como Funciona'},
+  {id:'s7',label:'Para Quem É'},
+  {id:'s8',label:'O Resultado'},
+  {id:'s9',label:'Trial — CTA'},
+];
+let cur = 0;
+const nav = document.getElementById('nav');
+slides.forEach((_,i)=>{
+  const b = document.createElement('button');
+  b.className='snav-dot'+(i===0?' active':'');
+  b.onclick=()=>goTo(i);
+  nav.appendChild(b);
+});
+function goTo(i){
+  document.getElementById(slides[cur].id).classList.remove('active');
+  nav.children[cur].classList.remove('active');
+  cur=i;
+  document.getElementById(slides[cur].id).classList.add('active');
+  nav.children[cur].classList.add('active');
+  document.getElementById('counter').textContent=String(cur+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+  document.getElementById('slide-title').textContent=slides[cur].label;
+  document.getElementById('prev').disabled=cur===0;
+  document.getElementById('next').disabled=cur===slides.length-1;
+}
+function changeSlide(dir){goTo(Math.max(0,Math.min(slides.length-1,cur+dir)));}
+goTo(0);
+</script>

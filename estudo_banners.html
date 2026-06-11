@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Intelligence — Banners Pague Menos | BrandTail.AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B2545;--navy-2:#13315C;--navy-deep:#061833;
+  --navy-mid:#1E3A5F;
+  --orange:#F97316;--orange-h:#EA580C;--orange-light:#fff3e8;--orange-border:#fde3c8;
+  --green:#10B981;
+  --silver-1:#F8FAFC;--silver-2:#F3F4F6;--silver-3:#CBD5E1;
+  --ink:#0F172A;--muted:#64748B;--line:#E2E8F0;
+  --paper:#FAFAF9;
+  --red:#EF4444;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.5;}
+h1,h2,h3,h4{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.5px;line-height:1.1;margin:0;}
+p{margin:0;}
+a{color:inherit;text-decoration:none;}
+.container{max-width:1140px;margin:0 auto;padding:0 28px;}
+.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:700;font-family:'Inter';}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:36px;height:36px;border-radius:9px;background:var(--navy);display:grid;place-items:center;flex-shrink:0;}
+.brand-mark svg{width:18px;height:18px;}
+.brand-text{font-family:'Manrope';font-weight:800;font-size:18px;letter-spacing:-.5px;color:var(--navy);}
+.brand-text .ai{color:var(--orange);}
+.nav-badge{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:500;text-transform:uppercase;background:var(--silver-2);padding:4px 10px;border-radius:20px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:9px;font-weight:600;font-size:14px;font-family:'Inter';cursor:pointer;border:0;transition:all .15s;white-space:nowrap;}
+.btn-primary{background:var(--orange);color:#fff;}
+.btn-primary:hover{background:var(--orange-h);transform:translateY(-1px);box-shadow:0 10px 24px -8px rgba(249,115,22,.5);}
+.btn-secondary{background:#fff;color:var(--navy);border:2px solid var(--navy);}
+.btn-secondary:hover{background:var(--navy);color:#fff;}
+
+/* ── HERO ── */
+.hero{background:var(--navy);overflow:hidden;position:relative;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;min-height:480px;align-items:stretch;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:64px 52px 64px 0;position:relative;z-index:1;}
+.hero-left .eyebrow{color:var(--orange);margin-bottom:16px;}
+.hero-left h1{font-size:clamp(28px,3.2vw,46px);color:#fff;margin-bottom:14px;}
+.hero-left h1 .accent{color:var(--orange);}
+.hero-left p{font-size:15px;color:#94A3B8;max-width:440px;margin-bottom:36px;line-height:1.65;}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.hero-right{background:linear-gradient(145deg,var(--navy-mid),var(--navy-deep));position:relative;display:flex;align-items:center;justify-content:center;padding:40px 32px;}
+/* decorative grid lines */
+.hero-right::before{content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:32px 32px;}
+
+/* KPI cards floating */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:340px;position:relative;z-index:1;}
+.kpi-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;backdrop-filter:blur(10px);}
+.kpi-card.accent{border-color:rgba(249,115,22,.4);background:rgba(249,115,22,.1);}
+.kpi-card.span2{grid-column:1/-1;}
+.kpi-label{font-family:'JetBrains Mono';font-size:9px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;}
+.kpi-val{font-family:'Manrope';font-size:22px;font-weight:800;color:#fff;}
+.kpi-val.orange{color:var(--orange);}
+.kpi-val.red{color:#FCA5A5;}
+.kpi-val.green{color:#6EE7B7;}
+.kpi-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;}
+
+/* ── SECTION WRAPPER ── */
+section.block{padding:72px 0;}
+section.block.tinted{background:var(--silver-2);}
+section.block.dark{background:var(--navy);color:#fff;}
+.section-head{margin-bottom:44px;}
+.section-head .eyebrow{margin-bottom:10px;display:block;}
+.section-head h2{font-size:clamp(26px,3vw,38px);color:var(--navy);margin-top:8px;}
+.dark .section-head h2{color:#fff;}
+.section-head p{font-size:16px;color:#475569;margin-top:12px;max-width:580px;line-height:1.6;}
+.dark .section-head p{color:#94A3B8;}
+
+/* ── TABLE AREA ── */
+.table-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px -12px rgba(11,37,69,.1);}
+.table-top{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.table-title{font-family:'Manrope';font-weight:700;font-size:15px;color:var(--navy);}
+.legend-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.lpill{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-weight:500;}
+.lpill-dot{width:8px;height:8px;border-radius:2px;background:var(--orange);}
+.lpill-dot.green{background:var(--green);}
+
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead tr{background:var(--silver-2);}
+th{padding:10px 13px;text-align:left;font-family:'Manrope';font-weight:700;font-size:11px;color:var(--navy);border-bottom:2px solid var(--line);white-space:nowrap;}
+th.r{text-align:right;}
+.th-group{text-align:center;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.th-group.orange-g{color:var(--orange);border-bottom:2px solid var(--orange)!important;}
+.th-group.green-g{color:var(--green);border-bottom:2px solid var(--green)!important;}
+
+tbody tr{border-bottom:1px solid var(--line);transition:background .12s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:#F0F7FF;}
+td{padding:11px 13px;color:#334155;}
+td.name{color:var(--navy);font-weight:600;font-size:13px;}
+td.r{text-align:right;}
+td.num{font-family:'JetBrains Mono';font-size:12px;text-align:right;color:#475569;}
+td.neg{font-family:'JetBrains Mono';font-size:12px;text-align:right;color:var(--red);font-weight:600;}
+td.pos{font-family:'JetBrains Mono';font-size:12px;text-align:right;color:var(--green);font-weight:600;}
+td.orange-pct{font-family:'JetBrains Mono';font-size:12px;text-align:right;color:var(--orange);font-weight:600;}
+
+/* bar inside cell */
+.bar-wrap{display:flex;align-items:center;justify-content:flex-end;gap:6px;}
+.bar-bg{width:54px;height:5px;background:var(--line);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;background:var(--orange);}
+.bar-fill.green{background:var(--green);}
+
+.total-row td{background:var(--navy)!important;color:#fff!important;font-weight:700;}
+.total-row td.num, .total-row td.neg, .total-row td.pos, .total-row td.orange-pct{color:#fff!important;}
+.total-row td.neg-t{font-family:'JetBrains Mono';font-size:12px;text-align:right;color:#FCA5A5!important;font-weight:700;}
+.total-row td.pos-t{font-family:'JetBrains Mono';font-size:12px;text-align:right;color:#6EE7B7!important;font-weight:700;}
+.total-row .bar-fill{background:rgba(255,255,255,.5);}
+
+/* ── LEGEND GRID ── */
+.legend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:16px;}
+.lg-item{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;}
+.lg-key{font-family:'JetBrains Mono';font-size:11px;color:var(--orange);font-weight:700;min-width:14px;flex-shrink:0;padding-top:1px;}
+.lg-desc{font-size:12px;color:var(--muted);line-height:1.45;}
+
+/* ── INSIGHTS ── */
+.insights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.ins-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.ins-card:hover{transform:translateY(-3px);box-shadow:0 20px 36px -18px rgba(11,37,69,.14);}
+.ins-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);}
+.ins-card.green-top::before{background:var(--green);}
+.ins-card.dark-top::before{background:var(--navy);}
+.ins-banner{font-family:'JetBrains Mono';font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.ins-banner::before{content:'▸';color:var(--orange);font-size:9px;}
+.ins-card.green-top .ins-banner::before{color:var(--green);}
+.ins-card.dark-top .ins-banner::before{color:var(--navy);}
+.ins-text{font-size:13.5px;color:#334155;line-height:1.65;}
+.ins-text strong{color:var(--navy);}
+.ins-text .hi{color:var(--orange);font-weight:700;}
+.ins-text .hi-red{color:var(--red);font-weight:700;}
+.ins-text .hi-green{color:var(--green);font-weight:700;}
+.ins-tags{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;}
+.tag{font-size:10px;font-weight:600;font-family:'JetBrains Mono';padding:3px 8px;border-radius:5px;background:var(--silver-2);color:var(--muted);border:1px solid var(--line);}
+.tag.orange{background:var(--orange-light);color:var(--orange-h);border-color:var(--orange-border);}
+.tag.green{background:#DCFCE7;color:#166534;border-color:#BBF7D0;}
+.tag.navy{background:#EFF6FF;color:var(--navy);border-color:#BFDBFE;}
+.tag.red{background:#FEF2F2;color:#B91C1C;border-color:#FECACA;}
+
+/* ── CTA ── */
+.cta-block{background:linear-gradient(145deg,var(--navy-mid),var(--navy-deep));border-radius:24px;padding:56px 64px;position:relative;overflow:hidden;text-align:center;}
+.cta-block::after{content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:28px 28px;pointer-events:none;}
+.cta-block .eyebrow{color:var(--orange);margin-bottom:14px;display:block;position:relative;z-index:1;}
+.cta-block h2{font-size:clamp(22px,3vw,38px);color:#fff;margin-bottom:16px;position:relative;z-index:1;}
+.cta-block h2 .accent{color:var(--orange);}
+.cta-block p{font-size:16px;color:#94A3B8;max-width:520px;margin:0 auto 36px;line-height:1.65;position:relative;z-index:1;}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18);}
+.btn-ghost:hover{background:rgba(255,255,255,.15);}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;height:60px;flex-wrap:wrap;gap:12px;}
+.footer-inner span{font-size:12px;color:rgba(255,255,255,.35);}
+.footer-inner a{font-size:12px;color:rgba(255,255,255,.45);transition:color .15s;}
+.footer-inner a:hover{color:var(--orange);}
+.footer-links{display:flex;gap:20px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:48px 0;}
+  .container{padding:0 20px;}
+  .cta-block{padding:40px 24px;}
+}
+@media(max-width:600px){
+  .kpi-grid{grid-template-columns:1fr 1fr;}
+  .insights-grid{grid-template-columns:1fr;}
+  .nav-badge{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 18 18">
+            <polyline points="1,13 6,8 10,11 17,4"/>
+            <polyline points="12,4 17,4 17,9"/>
+          </svg>
+        </div>
+        <span class="brand-text">BrandTail<span class="ai">.AI</span></span>
+      </div>
+      <span class="nav-badge">Trade Intelligence · Maio 2026</span>
+      <a href="https://brandtail.ai" class="btn btn-primary" style="padding:9px 18px;font-size:13px;">brandtail.ai →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <span class="eyebrow">Estudo de Trade Intelligence</span>
+        <h1>Análise de <span class="accent">Banners</span><br>Pague Menos</h1>
+        <p>9 banners monitorados na primeira página. Desconto, promoções LMPM e estratégia de trade extraídos e interpretados automaticamente.</p>
+        <div class="hero-actions">
+          <a href="#tabela" class="btn btn-primary">Ver análise completa</a>
+          <a href="#cta" class="btn btn-ghost">Fale com a gente</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="kpi-grid">
+          <div class="kpi-card span2">
+            <div class="kpi-label">Produtos monitorados</div>
+            <div class="kpi-val">351 <span style="font-size:14px;font-weight:500;color:rgba(255,255,255,.4);">SKUs</span></div>
+            <div class="kpi-sub">9 banners · 1ª página</div>
+          </div>
+          <div class="kpi-card accent">
+            <div class="kpi-label">Com desconto</div>
+            <div class="kpi-val orange">37%</div>
+            <div class="kpi-sub">129 produtos</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Desc. médio preço</div>
+            <div class="kpi-val red">-30%</div>
+            <div class="kpi-sub">no preço por vs. de</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Com LMPM</div>
+            <div class="kpi-val green">52%</div>
+            <div class="kpi-sub">181 produtos</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Desc. médio LMPM</div>
+            <div class="kpi-val red">-23%</div>
+            <div class="kpi-sub">compra múltipla</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABELA -->
+<section class="block tinted" id="tabela">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Dados por Banner</span>
+      <h2>Cobertura e profundidade<br>de desconto</h2>
+      <p>Primeira página de cada banner analisada com indicadores de desconto direto e promoção por volume (LMPM).</p>
+    </div>
+
+    <div class="table-card">
+      <div class="table-top">
+        <span class="table-title">Banners Promocionais — Pague Menos</span>
+        <div class="legend-pills">
+          <span class="lpill"><span class="lpill-dot"></span> Desconto no preço</span>
+          <span class="lpill"><span class="lpill-dot green"></span> Leve Mais Pague Menos</span>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2" style="vertical-align:bottom;min-width:200px;">Banner</th>
+              <th rowspan="2" class="r" style="vertical-align:bottom;">Qtd<br>Prod.</th>
+              <th colspan="3" class="th-group orange-g">◆ Desconto no Preço</th>
+              <th colspan="3" class="th-group green-g">◆ Leve Mais Pague Menos</th>
+            </tr>
+            <tr>
+              <th class="r">Qtd c/ Desc.</th>
+              <th class="r">% Tem Desc.</th>
+              <th class="r">Desc. Médio</th>
+              <th class="r">Qtd LMPM</th>
+              <th class="r">% LMPM</th>
+              <th class="r">Desc. Médio LMPM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 1 -->
+            <tr>
+              <td class="name">Cuidado Adulto Em Promo</td>
+              <td class="num">42</td>
+              <td class="num">6</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:14%"></div></div><span class="orange-pct">14%</span></div></td>
+              <td class="neg">-15%</td>
+              <td class="num">26</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:62%"></div></div><span class="pos">62%</span></div></td>
+              <td class="neg">-20%</td>
+            </tr>
+            <!-- 2 -->
+            <tr>
+              <td class="name">Cuidado Corporal Em Promo</td>
+              <td class="num">48</td>
+              <td class="num">19</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div><span class="orange-pct">40%</span></div></td>
+              <td class="neg">-27%</td>
+              <td class="num">29</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:60%"></div></div><span class="pos">60%</span></div></td>
+              <td class="neg">-35%</td>
+            </tr>
+            <!-- 3 -->
+            <tr>
+              <td class="name">Dermo E Beleza</td>
+              <td class="num">51</td>
+              <td class="num">8</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:16%"></div></div><span class="orange-pct">16%</span></div></td>
+              <td class="neg">-23%</td>
+              <td class="num">25</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:49%"></div></div><span class="pos">49%</span></div></td>
+              <td class="neg">-22%</td>
+            </tr>
+            <!-- 4 -->
+            <tr>
+              <td class="name">Festival Da Beleza</td>
+              <td class="num">48</td>
+              <td class="num">4</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:8%"></div></div><span class="orange-pct">8%</span></div></td>
+              <td class="neg">-16%</td>
+              <td class="num">41</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:85%"></div></div><span class="pos">85%</span></div></td>
+              <td class="neg">-21%</td>
+            </tr>
+            <!-- 5 -->
+            <tr>
+              <td class="name">Mundo Infantil Em Promo</td>
+              <td class="num">48</td>
+              <td class="num">30</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:63%"></div></div><span class="orange-pct">63%</span></div></td>
+              <td class="neg">-32%</td>
+              <td class="num">17</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:35%"></div></div><span class="pos">35%</span></div></td>
+              <td class="neg">-25%</td>
+            </tr>
+            <!-- 6 -->
+            <tr>
+              <td class="name">Ofertas Em Farmacinha</td>
+              <td class="num">48</td>
+              <td class="num">29</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:60%"></div></div><span class="orange-pct">60%</span></div></td>
+              <td class="neg">-19%</td>
+              <td class="num">31</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:65%"></div></div><span class="pos">65%</span></div></td>
+              <td class="neg">-32%</td>
+            </tr>
+            <!-- 7 -->
+            <tr>
+              <td class="name">Ofertas Pampers</td>
+              <td class="num">10</td>
+              <td class="num">10</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div><span class="orange-pct">100%</span></div></td>
+              <td class="neg">-35%</td>
+              <td class="num">0</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:0%"></div></div><span class="pos">0%</span></div></td>
+              <td class="num" style="color:var(--silver-3);">—</td>
+            </tr>
+            <!-- 8 -->
+            <tr>
+              <td class="name">Piscou Perdeu Aproveite Agora</td>
+              <td class="num">8</td>
+              <td class="num">7</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:88%"></div></div><span class="orange-pct">88%</span></div></td>
+              <td class="neg">-58%</td>
+              <td class="num">0</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:0%"></div></div><span class="pos">0%</span></div></td>
+              <td class="num" style="color:var(--silver-3);">—</td>
+            </tr>
+            <!-- 9 -->
+            <tr>
+              <td class="name">Top Ofertas Pague Menos</td>
+              <td class="num">48</td>
+              <td class="num">16</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:33%"></div></div><span class="orange-pct">33%</span></div></td>
+              <td class="neg">-30%</td>
+              <td class="num">12</td>
+              <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:25%"></div></div><span class="pos">25%</span></div></td>
+              <td class="neg">-24%</td>
+            </tr>
+            <!-- TOTAL -->
+            <tr class="total-row">
+              <td class="name" style="color:#fff!important;font-family:'Manrope';">Total Geral</td>
+              <td class="num" style="color:#fff!important;font-weight:700;">351</td>
+              <td class="num" style="color:#fff!important;font-weight:700;">129</td>
+              <td><div class="bar-wrap"><span style="font-family:'JetBrains Mono';font-size:12px;color:var(--orange);font-weight:700;">37%</span></div></td>
+              <td class="neg-t">-30%</td>
+              <td class="num" style="color:#fff!important;font-weight:700;">181</td>
+              <td><div class="bar-wrap"><span style="font-family:'JetBrains Mono';font-size:12px;color:#6EE7B7;font-weight:700;">52%</span></div></td>
+              <td class="neg-t">-23%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LEGENDA -->
+    <div class="legend-grid">
+      <div class="lg-item"><span class="lg-key">A</span><span class="lg-desc">Qtd de produtos listados na 1ª página do banner</span></div>
+      <div class="lg-item"><span class="lg-key">B</span><span class="lg-desc">Qtd com desconto: produtos com preço por &lt; preço de</span></div>
+      <div class="lg-item"><span class="lg-key">C</span><span class="lg-desc">% tem desconto: B/A</span></div>
+      <div class="lg-item"><span class="lg-key">D</span><span class="lg-desc">Desconto médio preço: diferença média entre preço por e preço de</span></div>
+      <div class="lg-item"><span class="lg-key">E</span><span class="lg-desc">Qtd tem LMPM: produtos com promoção Leve Mais por Menos</span></div>
+      <div class="lg-item"><span class="lg-key">F</span><span class="lg-desc">% tem LMPM: E/A</span></div>
+      <div class="lg-item"><span class="lg-key">G</span><span class="lg-desc">Desconto médio LMPM: preço ao levar mais de uma unidade / preço de</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="block" id="insights">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Interpretação dos Dados</span>
+      <h2>Insights por banner</h2>
+      <p>Cada banner revela uma estratégia de trade diferente — preço direto, volume, urgência ou posicionamento de marca.</p>
+    </div>
+
+    <div class="insights-grid">
+
+      <div class="ins-card">
+        <div class="ins-banner">Cuidado Adulto Em Promo</div>
+        <p class="ins-text">
+          Baixíssima cobertura de desconto direto (<strong>14%</strong>), compensada por forte presença de LMPM (<span class="hi-green">62%</span>).
+          A estratégia privilegia compra por volume com desconto médio de <span class="hi-red">-20%</span>, sinalizando foco em <strong>ticket médio</strong> em vez de preço unitário agressivo.
+        </p>
+        <div class="ins-tags">
+          <span class="tag green">LMPM Dominante</span>
+          <span class="tag">Desconto Baixo</span>
+        </div>
+      </div>
+
+      <div class="ins-card green-top">
+        <div class="ins-banner">Cuidado Corporal Em Promo</div>
+        <p class="ins-text">
+          Dupla agressividade: <strong>40%</strong> com desconto no preço e <span class="hi-green">60%</span> com LMPM — maior desconto médio em LMPM da análise (<span class="hi-red">-35%</span>).
+          Categoria com <strong>estratégia combinada</strong> que sinaliza preço competitivo e incentivo claro à recorrência.
+        </p>
+        <div class="ins-tags">
+          <span class="tag orange">Dupla Estratégia</span>
+          <span class="tag red">LMPM Mais Agressivo</span>
+        </div>
+      </div>
+
+      <div class="ins-card dark-top">
+        <div class="ins-banner">Dermo E Beleza</div>
+        <p class="ins-text">
+          Apenas <strong>16%</strong> dos produtos com desconto direto. Posicionamento consistente com produto de maior valor percebido: <strong>preço de lista estável</strong> e indução à compra múltipla via LMPM (<span class="hi-green">49%</span>).
+        </p>
+        <div class="ins-tags">
+          <span class="tag navy">Premium Posicionado</span>
+          <span class="tag green">LMPM Moderado</span>
+        </div>
+      </div>
+
+      <div class="ins-card green-top">
+        <div class="ins-banner">Festival Da Beleza</div>
+        <p class="ins-text">
+          Menor desconto direto (<span class="hi-red">8%</span>), mas <strong>líder em LMPM com 85%</strong> dos produtos — destaque da análise.
+          Mecânica que protege margem no preço unitário enquanto estimula volume: <strong>conversão sem erosão de margem aparente</strong>.
+        </p>
+        <div class="ins-tags">
+          <span class="tag green">LMPM Líder — 85%</span>
+          <span class="tag">Menor Desc. Direto</span>
+        </div>
+      </div>
+
+      <div class="ins-card">
+        <div class="ins-banner">Mundo Infantil Em Promo</div>
+        <p class="ins-text">
+          Banner mais orientado a <strong>preço direto</strong>: <span class="hi">63%</span> com desconto e média de <span class="hi-red">-32%</span> — segundo maior da análise.
+          LMPM baixo (<strong>35%</strong>) reflete o perfil de compra pontual típico do consumidor da categoria infantil.
+        </p>
+        <div class="ins-tags">
+          <span class="tag orange">Desconto Direto Alto</span>
+          <span class="tag red">Preço Agressivo</span>
+        </div>
+      </div>
+
+      <div class="ins-card">
+        <div class="ins-banner">Ofertas Em Farmacinha</div>
+        <p class="ins-text">
+          Equilíbrio entre as duas mecânicas: <span class="hi">60%</span> com desconto + <span class="hi-green">65%</span> com LMPM de <span class="hi-red">-32%</span>.
+          Banner de <strong>conversão imediata</strong> — alta cobertura em ambas as frentes confirma a proposta de valor da Farmacinha.
+        </p>
+        <div class="ins-tags">
+          <span class="tag orange">Estratégia Balanceada</span>
+          <span class="tag red">LMPM Agressivo</span>
+        </div>
+      </div>
+
+      <div class="ins-card dark-top">
+        <div class="ins-banner">Ofertas Pampers</div>
+        <p class="ins-text">
+          <span class="hi">100% dos produtos</span> com desconto direto e média de <span class="hi-red">-35%</span> — banner mono-marca com oferta massificada.
+          Ausência total de LMPM indica que <strong>preço é a única alavanca</strong>, possivelmente por acordo comercial com a indústria.
+        </p>
+        <div class="ins-tags">
+          <span class="tag red">100% Desc. Direto</span>
+          <span class="tag navy">Mono-Marca</span>
+        </div>
+      </div>
+
+      <div class="ins-card">
+        <div class="ins-banner">Piscou Perdeu Aproveite Agora</div>
+        <p class="ins-text">
+          Banner de <strong>urgência</strong> com o maior desconto médio da análise: <span class="hi-red">-58%</span> em 88% dos produtos.
+          Com apenas <strong>8 SKUs</strong>, é uma seleção cirúrgica de iscas para geração de tráfego — sem LMPM, o gatilho é exclusivamente o preço.
+        </p>
+        <div class="ins-tags">
+          <span class="tag red">Maior Desconto — 58%</span>
+          <span class="tag orange">Urgência / Isca</span>
+        </div>
+      </div>
+
+      <div class="ins-card dark-top">
+        <div class="ins-banner">Top Ofertas Pague Menos</div>
+        <p class="ins-text">
+          Cobertura moderada (<span class="hi">33%</span> desc. / <span class="hi-green">25%</span> LMPM) com descontos na média geral.
+          Posicionamento de <strong>curadoria editorial</strong> mais do que batalha de preço — vitrine institucional da marca Pague Menos.
+        </p>
+        <div class="ins-tags">
+          <span class="tag navy">Curadoria Institucional</span>
+          <span class="tag">Médio Desconto</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block" id="cta" style="padding-top:0;">
+  <div class="container">
+    <div class="cta-block">
+      <span class="eyebrow">BrandTail.AI — Pricing & Trade Solutions</span>
+      <h2>Como você <span class="accent">monitora, analisa</span><br>e otimiza o resultado<br>das suas ações de trade?</h2>
+      <p>Dados como esses — extraídos automaticamente, organizados em minutos — são o que separa decisões de trade baseadas em intuição das baseadas em evidência.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/5511972914026?text=Quero%20monitorar%20minha%20concorr%C3%AAncia" class="btn btn-primary">Quero monitorar minha concorrência →</a>
+        <a href="https://brandtail.ai" class="btn btn-ghost">Conhecer o BrandTail.AI</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>© 2026 BrandTail.AI — Pricing & Trade Solutions</span>
+      <div class="footer-links">
+        <a href="https://brandtail.ai">brandtail.ai</a>
+        <a href="https://linkedin.com/in/jeffdoprice">linkedin.com/in/jeffdoprice</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
