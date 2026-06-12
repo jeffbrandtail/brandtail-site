@@ -13,7 +13,7 @@
  *
  * Variáveis de ambiente (configurar no Cloudflare Pages → Settings → Environment variables):
  *  - RESEND_API_KEY  (obrigatória — nunca hardcoded)
- *  - FROM_EMAIL      (opcional, padrão: noreply@brandtail.ai)
+ *  - FROM_EMAIL      (opcional, padrão: contato@brandtail.ai)
  *  - CHROME_STORE_URL (opcional, link da extensão no email de boas-vindas)
  */
 
@@ -150,10 +150,11 @@ async function sendEmail(env, { to, subject, text }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: `BrandTail.AI <${env.FROM_EMAIL || "noreply@brandtail.ai"}>`,
+      from: `BrandTail.AI <${env.FROM_EMAIL || "contato@brandtail.ai"}>`,
       to: [to],
       subject,
       text,
+      reply_to: "jefg5@yahoo.com.br",
     }),
   });
   if (!res.ok) {
