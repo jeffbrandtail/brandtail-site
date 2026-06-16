@@ -1,4 +1,6 @@
+// v1.1
 /**
+ * Cloudflare Pages Function — POST /api/cadastro
  * Cloudflare Pages Function — POST /api/cadastro
  *
  * Fluxo:
