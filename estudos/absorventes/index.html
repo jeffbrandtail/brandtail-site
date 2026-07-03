@@ -1033,7 +1033,8 @@ new Chart(document.getElementById('chDist'),{
   type:'bar',
   data:{labels:Object.keys(D.dist).map(k=>k+' vendedor'+(k>1?'es':'')),
     datasets:[{data:Object.values(D.dist),backgroundColor:[navy,navy2,'#2E4E7E',orange,'#EA580C'],borderRadius:8,maxBarThickness:64}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' EANs'}}},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' EANs'}}},
     scales:{x:{grid:{display:false}},y:{grid:{color:line},title:{display:true,text:'EANs'}}}}
 });
 
@@ -1050,7 +1051,8 @@ new Chart(document.getElementById('chBuckets'),{
     datasets:[{data:Object.values(D.buckets),
       backgroundColor:Object.keys(D.buckets).map(k=>(k==='<90%'||k==='90-99%')?green:(k==='~100%'?'#94A3B8':(k==='>200%'||k==='150-200%')?red:orange)),
       borderRadius:6,maxBarThickness:52}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' ofertas'}}},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' ofertas'}}},
     scales:{x:{grid:{display:false}},y:{grid:{color:line},title:{display:true,text:'Ofertas'}}}}
 });
 
@@ -1058,7 +1060,7 @@ new Chart(document.getElementById('chStatus'),{
   type:'doughnut',
   data:{labels:Object.keys(D.status),datasets:[{data:Object.values(D.status),backgroundColor:[red,green,'#94A3B8'],borderWidth:2,borderColor:'#fff'}]},
   options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
-    plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>c.label+': '+c.parsed+' ofertas'}}}}}
+    plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>c.label+': '+c.parsed+' ofertas'}}}}
 });
 </script>
 </body>
