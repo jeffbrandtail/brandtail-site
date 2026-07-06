@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudo de Competitividade — Whey Protein | Droga Raia vs Amazon</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'><rect width='60' height='60' rx='12' fill='%230B2545'/><path d='M16 14H32a8 8 0 010 16H16ZM16 30H34a8 8 0 010 16H16Z' fill='white'/><path d='M40 46L48 38l0 4 8 0 0 4Z' fill='%23F97316'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --navy:#0B2545;--navy-2:#13315C;--navy-deep:#061833;
+  --orange:#F97316;--orange-h:#EA580C;
+  --silver-2:#F3F4F6;--silver-3:#CBD5E1;
+  --ink:#0F172A;--muted:#64748B;--line:#E2E8F0;
+  --paper:#FAFAF9;--green:#16A34A;--red:#DC2626;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.5;}
+h1,h2,h3,h4{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-0.5px;line-height:1.1;margin:0;}
+p{margin:0;}
+.container{max-width:1200px;margin:0 auto;padding:0 28px;}
+.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:700;}
+.mono{font-family:'JetBrains Mono',monospace;}
+
+header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:38px;height:38px;border-radius:9px;background:var(--navy);display:grid;place-items:center;flex-shrink:0;}
+.brand-text{font-family:'Manrope';font-weight:800;font-size:19px;letter-spacing:-.5px;color:var(--navy);}
+.brand-text .ai{color:var(--orange);}
+.brand-tag{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:500;text-transform:uppercase;}
+.nav-date{font-size:13px;color:var(--muted);font-weight:500;}
+
+.hero{background:linear-gradient(150deg,#13315C 0%,#0B2545 60%,#061833 100%);color:#fff;padding:72px 0 64px;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.18),transparent 70%);}
+.hero h1{font-size:clamp(30px,4vw,48px);font-weight:900;letter-spacing:-1px;margin:16px 0 14px;}
+.hero h1 .hl{color:var(--orange);}
+.hero p{color:rgba(255,255,255,.65);max-width:640px;font-size:16px;}
+.hero-meta{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;}
+.hero-meta div{font-size:13px;color:rgba(255,255,255,.75);}
+.hero-meta strong{display:block;font-size:15px;color:#fff;font-family:'Manrope';}
+
+section{padding:56px 0 8px;}
+.sec-head{margin-bottom:28px;}
+.sec-head h2{font-size:clamp(24px,2.6vw,32px);color:var(--navy);margin-top:8px;}
+.sec-head p{color:var(--muted);margin-top:8px;max-width:760px;font-size:15px;}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 20px;box-shadow:0 8px 20px -14px rgba(11,37,69,.15);}
+.card .k{font-family:'Manrope';font-size:32px;font-weight:900;color:var(--navy);letter-spacing:-1px;line-height:1;}
+.card .k.orange{color:var(--orange);}
+.card .k.green{color:var(--green);}
+.card .k.red{color:var(--red);}
+.card .l{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:8px;}
+.card .s{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45;}
+
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:0 8px 20px -14px rgba(11,37,69,.15);}
+.panel h3{font-size:17px;color:var(--navy);margin-bottom:6px;}
+.panel .sub{font-size:13px;color:var(--muted);margin-bottom:18px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.grid-32{display:grid;grid-template-columns:3fr 2fr;gap:20px;}
+@media(max-width:900px){.grid-2,.grid-32{grid-template-columns:1fr;}}
+
+.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 20px -14px rgba(11,37,69,.15);}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:720px;}
+thead th{background:var(--navy);color:#fff;font-family:'Manrope';font-weight:700;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;padding:12px 14px;text-align:left;white-space:nowrap;}
+thead tr+tr th{background:var(--navy-2);}
+th.num,td.num{text-align:right;}
+th.center{text-align:center;}
+th.group-th{border-left:1px solid rgba(255,255,255,.15);}
+tbody td{padding:11px 14px;border-top:1px solid var(--line);vertical-align:top;}
+tbody tr:nth-child(even){background:#FBFCFE;}
+tbody tr:hover{background:#F1F5F9;}
+.td-sub{font-size:11.5px;color:var(--muted);}
+td.dim{color:var(--silver-3);}
+.comp{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:12.5px;padding:2px 8px;border-radius:6px;}
+.comp.bad{background:#FEF2F2;color:var(--red);}
+.comp.good{background:#F0FDF4;color:var(--green);}
+.comp.neutral{background:var(--silver-2);color:var(--ink);}
+
+.chart-box{position:relative;height:300px;}
+.legend-note{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5;}
+
+.insight{background:linear-gradient(150deg,#13315C,#0B2545);border-radius:16px;color:#fff;padding:26px;}
+.insight h3{color:#fff;font-size:17px;margin-bottom:12px;}
+.insight ul{margin:0;padding-left:18px;color:rgba(255,255,255,.85);font-size:14px;display:flex;flex-direction:column;gap:10px;}
+.insight .hl{color:var(--orange);font-weight:700;}
+
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(249,115,22,.12);color:var(--orange);margin-bottom:8px;}
+
+footer{margin-top:64px;background:var(--navy-deep);color:rgba(255,255,255,.55);padding:28px 0;font-size:13px;}
+footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.mt{margin-top:20px;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container nav">
+    <div class="brand">
+      <div class="brand-mark"><svg width="22" height="22" viewBox="0 0 60 60"><path d="M16 14H32a8 8 0 010 16H16ZM16 30H34a8 8 0 010 16H16Z" fill="white"/><path d="M40 46L48 38l0 4 8 0 0 4Z" fill="#F97316"/></svg></div>
+      <div><div class="brand-text">BrandTail<span class="ai">.AI</span></div><div class="brand-tag">Pricing &amp; Trade Solutions</div></div>
+    </div>
+    <div class="nav-date mono">Coleta: 04/07/2026 &middot; Fonte: live</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="eyebrow">Estudo de Competitividade</span>
+    <h1>Whey Protein &mdash; <span class="hl">Droga Raia</span> vs Amazon</h1>
+    <p>An&aacute;lise de pre&ccedil;os dos produtos da categoria whey protein listados no site da Droga Raia (1P e marketplace) comparados com a Amazon, item a item, com valida&ccedil;&atilde;o de match por equival&ecirc;ncia de URL.</p>
+    <div class="hero-meta">
+      <div><strong>960</strong>ofertas analisadas</div>
+      <div><strong>654</strong>EANs &uacute;nicos</div>
+      <div><strong>82</strong>marcas</div>
+      <div><strong>62</strong>vendedores</div>
+      <div><strong>42</strong>p&aacute;ginas coletadas</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 1. ESCOPO ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">01 &middot; Escopo</span>
+      <h2>Escopo analisado</h2>
+      <p>Um mesmo EAN pode aparecer mais de uma vez na base, pois pode ser vendido por mais de um vendedor no site da Raia (seller). Por isso o estudo diferencia <strong>ofertas</strong> (SKU + vendedor) de <strong>EANs &uacute;nicos</strong>.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="k">960</div><div class="l">Ofertas (SKUs)</div><div class="s">Registros produto &times; vendedor</div></div>
+      <div class="card"><div class="k orange">654</div><div class="l">EANs &uacute;nicos</div><div class="s">Produtos distintos analisados</div></div>
+      <div class="card"><div class="k">82</div><div class="l">Marcas</div><div class="s">Marcas distintas na categoria</div></div>
+      <div class="card"><div class="k">62</div><div class="l">Vendedores</div><div class="s">Raia (1P) + 61 sellers (3P)</div></div>
+      <div class="card"><div class="k">Amazon</div><div class="l">Concorrente</div><div class="s">100% das compara&ccedil;&otilde;es</div></div>
+    </div>
+
+    <div class="grid-32 mt">
+      <div class="panel">
+        <h3>Distribui&ccedil;&atilde;o dos EANs por quantidade de vendedores</h3>
+        <div class="sub">Quantos produtos (EANs) s&atilde;o vendidos por 1, 2, 3, 4, 5 ou mais vendedores no site da Raia</div>
+        <div class="chart-box"><canvas id="chDist"></canvas></div>
+        <div class="legend-note">462 EANs (71%) t&ecirc;m um &uacute;nico vendedor. 192 EANs (29%) t&ecirc;m sobreposi&ccedil;&atilde;o de vendedores &mdash; onde h&aacute; disputa de buy box e maior dispers&atilde;o de pre&ccedil;o.</div>
+      </div>
+      <div class="panel">
+        <h3>Composi&ccedil;&atilde;o das ofertas por grupo</h3>
+        <div class="sub">1P Exclusivo &middot; 1P + 3P &middot; 3P Exclusivo</div>
+        <div class="chart-box"><canvas id="chGrupos"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. GRANDES NUMEROS ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">02 &middot; Grandes n&uacute;meros</span>
+      <h2>Competitividade geral</h2>
+      <p>Competitividade = <span class="mono">pre&ccedil;o Raia &divide; pre&ccedil;o Amazon</span>. Acima de 100% a oferta na Raia est&aacute; mais cara que na Amazon; abaixo de 100%, mais barata.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="k red">123,5%</div><div class="l">Competitividade</div><div class="s">M&eacute;dia de todas as 960 ofertas &middot; mediana 118,3%</div></div>
+      <div class="card"><div class="k orange">118,2%</div><div class="l">Compet. menor pre&ccedil;o</div><div class="s">Menor pre&ccedil;o Raia por EAN vs Amazon &middot; mediana 111,8%</div></div>
+      <div class="card"><div class="k red">747</div><div class="l">Mais caros (78%)</div><div class="s">Compet. m&eacute;dia de 133,1%</div></div>
+      <div class="card"><div class="k green">164</div><div class="l">Mais baratos (17%)</div><div class="s">Compet. m&eacute;dia de 86,5%</div></div>
+      <div class="card"><div class="k">49</div><div class="l">Iguais (5%)</div><div class="s">Paridade de pre&ccedil;o com a Amazon</div></div>
+    </div>
+
+    <div class="grid-2 mt">
+      <div class="panel">
+        <h3>Distribui&ccedil;&atilde;o da competitividade</h3>
+        <div class="sub">Quantidade de ofertas por faixa de competitividade (pre&ccedil;o Raia &divide; pre&ccedil;o Amazon)</div>
+        <div class="chart-box"><canvas id="chBuckets"></canvas></div>
+        <div class="legend-note">A distribui&ccedil;&atilde;o &eacute; concentrada: 430 ofertas (45%) est&atilde;o entre 110% e 150%. Apenas 13 ofertas (1%) passam do dobro do pre&ccedil;o da Amazon &mdash; cauda muito menor que em outras categorias de marketplace.</div>
+      </div>
+      <div class="insight">
+        <h3>Resumo executivo</h3>
+        <ul>
+          <li><span class="hl">78% das ofertas est&atilde;o mais caras</span> que a Amazon, mas com gap m&eacute;dio contido: competitividade m&eacute;dia de 123,5% no total da base.</li>
+          <li>Olhando o <span class="hl">menor pre&ccedil;o por EAN</span> (melhor oferta dispon&iacute;vel na Raia), a competitividade melhora para 118,2% &mdash; a mediana fica em 111,8%.</li>
+          <li>A categoria &eacute; <span class="hl">dominada pelo marketplace</span>: 79% das ofertas s&atilde;o de EANs vendidos apenas por sellers 3P; a Raia (1P) responde por 105 ofertas (11%).</li>
+          <li>No sortimento vendido pela pr&oacute;pria Raia (1P), a competitividade &eacute; de <span class="hl">118,1%</span> &mdash; melhor que a m&eacute;dia do marketplace, mas ainda acima da paridade.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. GRUPOS ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">03 &middot; Raia vs Marketplace</span>
+      <h2>Resumo por grupo de venda</h2>
+      <p>Cada EAN foi classificado em tr&ecirc;s grupos: <strong>1P Exclusivo</strong> (s&oacute; a Raia vende), <strong>1P + 3P</strong> (Raia e sellers vendem o mesmo EAN) e <strong>3P Exclusivo</strong> (s&oacute; sellers vendem).</p>
+    </div>
+    <div class="table-wrap"><table>
+      <thead>
+        <tr><th>Grupo</th><th class="num">SKUs</th><th class="num">EANs</th><th class="num">Compet.</th><th class="num">Mais caros</th><th class="num">Compet. caros</th><th class="num">Mais baratos</th><th class="num">Compet. baratos</th><th class="num">Iguais</th></tr>
+      </thead>
+      <tbody><tr>
+      <td><strong>1P Exclusivo</strong><br><span class="td-sub">EAN vendido apenas pela Raia</span></td>
+      <td class="num">54</td>
+      <td class="num">54</td>
+      <td class="num"><span class="comp bad">117,4%</span></td>
+      <td class="num">33</td>
+      <td class="num"><span class="comp bad">137,5%</span></td>
+      <td class="num">14</td>
+      <td class="num"><span class="comp good">78,6%</span></td>
+      <td class="num">7</td>
+    </tr><tr>
+      <td><strong>1P + 3P</strong><br><span class="td-sub">EAN vendido pela Raia e por sellers</span></td>
+      <td class="num">144</td>
+      <td class="num">51</td>
+      <td class="num"><span class="comp bad">127,8%</span></td>
+      <td class="num">120</td>
+      <td class="num"><span class="comp bad">135,3%</span></td>
+      <td class="num">14</td>
+      <td class="num"><span class="comp good">83,3%</span></td>
+      <td class="num">10</td>
+    </tr><tr>
+      <td><strong>3P Exclusivo</strong><br><span class="td-sub">EAN vendido apenas por sellers</span></td>
+      <td class="num">762</td>
+      <td class="num">549</td>
+      <td class="num"><span class="comp bad">123,1%</span></td>
+      <td class="num">594</td>
+      <td class="num"><span class="comp bad">132,4%</span></td>
+      <td class="num">136</td>
+      <td class="num"><span class="comp good">87,7%</span></td>
+      <td class="num">32</td>
+    </tr></tbody>
+    </table></div>
+    <div class="legend-note">Competitividade calculada sobre as ofertas (SKU &times; vendedor) de cada grupo.</div>
+  </div>
+</section>
+
+<!-- ============ 4. RAIA VS MKT INTERSEC ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">04 &middot; Interse&ccedil;&atilde;o 1P + 3P</span>
+      <h2>Raia vs sellers no mesmo produto</h2>
+      <p>Para os 51 EANs vendidos simultaneamente pela Raia e por sellers, comparamos o pre&ccedil;o da Raia com o <strong>menor pre&ccedil;o entre os demais vendedores</strong>.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="k">51</div><div class="l">EANs na interse&ccedil;&atilde;o</div><div class="s">Vendidos por Raia + ao menos 1 seller</div></div>
+      <div class="card"><div class="k green">98,5%</div><div class="l">Compet. Raia vs Mkt</div><div class="s">Pre&ccedil;o Raia &divide; menor pre&ccedil;o dos sellers &middot; mediana 98,9%</div></div>
+      <div class="card"><div class="k green">30</div><div class="l">Raia mais barata (59%)</div><div class="s">Raia vence o marketplace</div></div>
+      <div class="card"><div class="k red">21</div><div class="l">Raia mais cara (41%)</div><div class="s">Seller vence a Raia</div></div>
+      <div class="card"><div class="k">0</div><div class="l">Empate</div><div class="s">Mesmo pre&ccedil;o</div></div>
+    </div>
+    <div class="legend-note">Leitura: dentro do pr&oacute;prio site, a Raia fica em m&eacute;dia em 98,5% do menor pre&ccedil;o do marketplace &mdash; praticamente empatada com os sellers que vendem o mesmo EAN. Diferente de outras categorias, em whey a disputa de buy box &eacute; apertada: a Raia vence em 59% dos casos.</div>
+  </div>
+</section>
+
+<!-- ============ 5. MARCAS ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">05 &middot; Marcas</span>
+      <h2>Competitividade por marca</h2>
+      <p>Ordenado por volume de SKUs. As colunas de grupos mostram SKUs / competitividade em cada modelo de venda.</p>
+    </div>
+    <div class="table-wrap"><table>
+      <thead>
+        <tr>
+          <th rowspan="2">Marca</th><th rowspan="2" class="num">SKUs</th><th rowspan="2" class="num">Compet.</th>
+          <th colspan="2" class="center group-th">Mais caros</th><th colspan="2" class="center group-th">Mais baratos</th>
+          <th colspan="3" class="center group-th">Grupos &mdash; SKUs / Compet.</th>
+        </tr>
+        <tr>
+          <th class="num">Qtd</th><th class="num">Compet.</th>
+          <th class="num">Qtd</th><th class="num">Compet.</th>
+          <th class="num">1P Excl.</th><th class="num">1P + 3P</th><th class="num">3P Excl.</th>
+        </tr>
+      </thead><tbody><tr><td><strong>Dux</strong></td><td class="num">163</td><td class="num"><span class="comp bad">122,6%</span></td><td class="num">142</td><td class="num"><span class="comp bad">127,4%</span></td><td class="num">14</td><td class="num"><span class="comp good">85,2%</span></td><td class="num">7 <span class="td-sub">/ 110%</span></td><td class="num">53 <span class="td-sub">/ 124%</span></td><td class="num">103 <span class="td-sub">/ 123%</span></td></tr>
+<tr><td><strong>Newnutrition</strong></td><td class="num">54</td><td class="num"><span class="comp bad">107,0%</span></td><td class="num">31</td><td class="num"><span class="comp bad">114,7%</span></td><td class="num">18</td><td class="num"><span class="comp good">95,6%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">54 <span class="td-sub">/ 107%</span></td></tr>
+<tr><td><strong>Rakkau</strong></td><td class="num">53</td><td class="num"><span class="comp bad">102,6%</span></td><td class="num">38</td><td class="num"><span class="comp bad">104,7%</span></td><td class="num">15</td><td class="num"><span class="comp good">97,5%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">53 <span class="td-sub">/ 103%</span></td></tr>
+<tr><td><strong>Nutrata</strong></td><td class="num">42</td><td class="num"><span class="comp bad">119,9%</span></td><td class="num">29</td><td class="num"><span class="comp bad">137,8%</span></td><td class="num">11</td><td class="num"><span class="comp good">76,5%</span></td><td class="num">3 <span class="td-sub">/ 111%</span></td><td class="num">4 <span class="td-sub">/ 111%</span></td><td class="num">35 <span class="td-sub">/ 122%</span></td></tr>
+<tr><td><strong>Vitafor</strong></td><td class="num">42</td><td class="num"><span class="comp bad">133,9%</span></td><td class="num">38</td><td class="num"><span class="comp bad">138,5%</span></td><td class="num">4</td><td class="num"><span class="comp good">90,4%</span></td><td class="num dim">&ndash;</td><td class="num">11 <span class="td-sub">/ 142%</span></td><td class="num">31 <span class="td-sub">/ 131%</span></td></tr>
+<tr><td><strong>Essential Nutrition</strong></td><td class="num">41</td><td class="num"><span class="comp bad">104,8%</span></td><td class="num">26</td><td class="num"><span class="comp bad">111,5%</span></td><td class="num">15</td><td class="num"><span class="comp good">93,3%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">41 <span class="td-sub">/ 105%</span></td></tr>
+<tr><td><strong>Body Action</strong></td><td class="num">37</td><td class="num"><span class="comp bad">154,7%</span></td><td class="num">36</td><td class="num"><span class="comp bad">156,5%</span></td><td class="num">1</td><td class="num"><span class="comp good">89,4%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">37 <span class="td-sub">/ 155%</span></td></tr>
+<tr><td><strong>Elemento Puro</strong></td><td class="num">33</td><td class="num"><span class="comp bad">127,7%</span></td><td class="num">25</td><td class="num"><span class="comp bad">141,4%</span></td><td class="num">8</td><td class="num"><span class="comp good">85,0%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">33 <span class="td-sub">/ 128%</span></td></tr>
+<tr><td><strong>True Source</strong></td><td class="num">32</td><td class="num"><span class="comp bad">126,4%</span></td><td class="num">29</td><td class="num"><span class="comp bad">129,6%</span></td><td class="num">1</td><td class="num"><span class="comp good">87,3%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">32 <span class="td-sub">/ 126%</span></td></tr>
+<tr><td><strong>Max Titanium</strong></td><td class="num">31</td><td class="num"><span class="comp bad">124,4%</span></td><td class="num">24</td><td class="num"><span class="comp bad">133,0%</span></td><td class="num">4</td><td class="num"><span class="comp good">91,5%</span></td><td class="num">3 <span class="td-sub">/ 120%</span></td><td class="num">6 <span class="td-sub">/ 101%</span></td><td class="num">22 <span class="td-sub">/ 131%</span></td></tr>
+<tr><td><strong>Integralmédica</strong></td><td class="num">30</td><td class="num"><span class="comp bad">138,0%</span></td><td class="num">27</td><td class="num"><span class="comp bad">142,4%</span></td><td class="num">1</td><td class="num"><span class="comp good">94,7%</span></td><td class="num">1 <span class="td-sub">/ 100%</span></td><td class="num">3 <span class="td-sub">/ 141%</span></td><td class="num">26 <span class="td-sub">/ 139%</span></td></tr>
+<tr><td><strong>Equaliv</strong></td><td class="num">28</td><td class="num"><span class="comp bad">107,8%</span></td><td class="num">17</td><td class="num"><span class="comp bad">125,9%</span></td><td class="num">10</td><td class="num"><span class="comp good">77,7%</span></td><td class="num">7 <span class="td-sub">/ 96%</span></td><td class="num">11 <span class="td-sub">/ 111%</span></td><td class="num">10 <span class="td-sub">/ 113%</span></td></tr>
+<tr><td><strong>Profit Laboratório</strong></td><td class="num">26</td><td class="num"><span class="comp bad">160,3%</span></td><td class="num">26</td><td class="num"><span class="comp bad">160,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">26 <span class="td-sub">/ 160%</span></td></tr>
+<tr><td><strong>Adaptogen</strong></td><td class="num">25</td><td class="num"><span class="comp bad">111,9%</span></td><td class="num">16</td><td class="num"><span class="comp bad">127,2%</span></td><td class="num">9</td><td class="num"><span class="comp good">84,6%</span></td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 84%</span></td><td class="num">22 <span class="td-sub">/ 116%</span></td></tr>
+<tr><td><strong>Black Skull</strong></td><td class="num">25</td><td class="num"><span class="comp bad">164,5%</span></td><td class="num">23</td><td class="num"><span class="comp bad">171,9%</span></td><td class="num">2</td><td class="num"><span class="comp good">78,9%</span></td><td class="num">3 <span class="td-sub">/ 154%</span></td><td class="num">15 <span class="td-sub">/ 171%</span></td><td class="num">7 <span class="td-sub">/ 154%</span></td></tr>
+<tr><td><strong>Adaptogen Science</strong></td><td class="num">21</td><td class="num"><span class="comp bad">140,5%</span></td><td class="num">19</td><td class="num"><span class="comp bad">145,9%</span></td><td class="num">2</td><td class="num"><span class="comp good">89,6%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">21 <span class="td-sub">/ 141%</span></td></tr>
+<tr><td><strong>New Millen</strong></td><td class="num">18</td><td class="num"><span class="comp bad">128,2%</span></td><td class="num">14</td><td class="num"><span class="comp bad">145,1%</span></td><td class="num">4</td><td class="num"><span class="comp good">69,3%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">18 <span class="td-sub">/ 128%</span></td></tr>
+<tr><td><strong>Atlhetica Nutrition</strong></td><td class="num">17</td><td class="num"><span class="comp bad">125,2%</span></td><td class="num">12</td><td class="num"><span class="comp bad">144,5%</span></td><td class="num">5</td><td class="num"><span class="comp good">79,1%</span></td><td class="num">5 <span class="td-sub">/ 134%</span></td><td class="num">3 <span class="td-sub">/ 114%</span></td><td class="num">9 <span class="td-sub">/ 124%</span></td></tr>
+<tr><td><strong>Bold</strong></td><td class="num">17</td><td class="num"><span class="comp bad">129,1%</span></td><td class="num">16</td><td class="num"><span class="comp bad">130,9%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">4 <span class="td-sub">/ 112%</span></td><td class="num">13 <span class="td-sub">/ 134%</span></td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Dark Lab</strong></td><td class="num">15</td><td class="num"><span class="comp bad">108,1%</span></td><td class="num">4</td><td class="num"><span class="comp bad">130,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">15 <span class="td-sub">/ 108%</span></td></tr>
+<tr><td><strong>Health Time Nutrition</strong></td><td class="num">11</td><td class="num"><span class="comp bad">117,0%</span></td><td class="num">11</td><td class="num"><span class="comp bad">117,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">11 <span class="td-sub">/ 117%</span></td></tr>
+<tr><td><strong>Puravida</strong></td><td class="num">11</td><td class="num"><span class="comp bad">108,8%</span></td><td class="num">7</td><td class="num"><span class="comp bad">125,4%</span></td><td class="num">4</td><td class="num"><span class="comp good">79,8%</span></td><td class="num">2 <span class="td-sub">/ 122%</span></td><td class="num">5 <span class="td-sub">/ 101%</span></td><td class="num">4 <span class="td-sub">/ 112%</span></td></tr>
+<tr><td><strong>True</strong></td><td class="num">11</td><td class="num"><span class="comp bad">124,4%</span></td><td class="num">10</td><td class="num"><span class="comp bad">132,5%</span></td><td class="num">1</td><td class="num"><span class="comp good">43,8%</span></td><td class="num">2 <span class="td-sub">/ 151%</span></td><td class="num dim">&ndash;</td><td class="num">9 <span class="td-sub">/ 118%</span></td></tr>
+<tr><td><strong>Maxinutri</strong></td><td class="num">10</td><td class="num"><span class="comp bad">102,9%</span></td><td class="num">3</td><td class="num"><span class="comp bad">110,5%</span></td><td class="num">1</td><td class="num"><span class="comp good">97,9%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">10 <span class="td-sub">/ 103%</span></td></tr>
+<tr><td><strong>Best Whey</strong></td><td class="num">9</td><td class="num"><span class="comp bad">101,8%</span></td><td class="num">4</td><td class="num"><span class="comp bad">139,8%</span></td><td class="num">4</td><td class="num"><span class="comp good">64,2%</span></td><td class="num">6 <span class="td-sub">/ 96%</span></td><td class="num">3 <span class="td-sub">/ 112%</span></td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Health Time</strong></td><td class="num">9</td><td class="num"><span class="comp bad">127,4%</span></td><td class="num">9</td><td class="num"><span class="comp bad">127,4%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">9 <span class="td-sub">/ 127%</span></td></tr>
+<tr><td><strong>Nutrify</strong></td><td class="num">9</td><td class="num"><span class="comp bad">157,6%</span></td><td class="num">9</td><td class="num"><span class="comp bad">157,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 180%</span></td><td class="num">7 <span class="td-sub">/ 151%</span></td></tr>
+<tr><td><strong>Probiótica</strong></td><td class="num">8</td><td class="num"><span class="comp bad">129,6%</span></td><td class="num">6</td><td class="num"><span class="comp bad">139,4%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">4 <span class="td-sub">/ 136%</span></td><td class="num">4 <span class="td-sub">/ 123%</span></td></tr>
+<tr><td><strong>Bodybuilders</strong></td><td class="num">7</td><td class="num"><span class="comp bad">112,0%</span></td><td class="num">4</td><td class="num"><span class="comp bad">133,2%</span></td><td class="num">3</td><td class="num"><span class="comp good">83,8%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">7 <span class="td-sub">/ 112%</span></td></tr>
+<tr><td><strong>Dux Human Health</strong></td><td class="num">7</td><td class="num"><span class="comp bad">119,0%</span></td><td class="num">7</td><td class="num"><span class="comp bad">119,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 107%</span></td><td class="num">5 <span class="td-sub">/ 124%</span></td></tr>
+<tr><td><strong>Optimum Nutrition</strong></td><td class="num">7</td><td class="num"><span class="comp bad">137,5%</span></td><td class="num">7</td><td class="num"><span class="comp bad">137,5%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">7 <span class="td-sub">/ 137%</span></td></tr>
+<tr><td><strong>Mais Mu</strong></td><td class="num">6</td><td class="num"><span class="comp bad">108,4%</span></td><td class="num">3</td><td class="num"><span class="comp bad">118,4%</span></td><td class="num">1</td><td class="num"><span class="comp good">95,0%</span></td><td class="num">1 <span class="td-sub">/ 100%</span></td><td class="num dim">&ndash;</td><td class="num">5 <span class="td-sub">/ 110%</span></td></tr>
+<tr><td><strong>Performance Nutrition</strong></td><td class="num">6</td><td class="num"><span class="comp bad">140,3%</span></td><td class="num">6</td><td class="num"><span class="comp bad">140,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">6 <span class="td-sub">/ 140%</span></td></tr>
+<tr><td><strong>Xcharge</strong></td><td class="num">5</td><td class="num"><span class="comp bad">106,2%</span></td><td class="num">4</td><td class="num"><span class="comp bad">109,0%</span></td><td class="num">1</td><td class="num"><span class="comp good">94,8%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">5 <span class="td-sub">/ 106%</span></td></tr>
+<tr><td><strong>Bioroots</strong></td><td class="num">4</td><td class="num"><span class="comp bad">115,6%</span></td><td class="num">3</td><td class="num"><span class="comp bad">122,2%</span></td><td class="num">1</td><td class="num"><span class="comp good">96,0%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">4 <span class="td-sub">/ 116%</span></td></tr>
+<tr><td><strong>Dobro</strong></td><td class="num">4</td><td class="num"><span class="comp bad">131,0%</span></td><td class="num">4</td><td class="num"><span class="comp bad">131,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">4 <span class="td-sub">/ 131%</span></td></tr>
+<tr><td><strong>Moriale Odt</strong></td><td class="num">4</td><td class="num"><span class="comp good">89,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">3</td><td class="num"><span class="comp good">85,3%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">4 <span class="td-sub">/ 89%</span></td></tr>
+<tr><td><strong>Sanavita</strong></td><td class="num">4</td><td class="num"><span class="comp bad">107,4%</span></td><td class="num">3</td><td class="num"><span class="comp bad">110,6%</span></td><td class="num">1</td><td class="num"><span class="comp good">97,7%</span></td><td class="num">1 <span class="td-sub">/ 105%</span></td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 108%</span></td></tr>
+<tr><td><strong>Under Labz</strong></td><td class="num">4</td><td class="num"><span class="comp bad">134,2%</span></td><td class="num">4</td><td class="num"><span class="comp bad">134,2%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">4 <span class="td-sub">/ 134%</span></td></tr>
+<tr><td><strong>3Vs</strong></td><td class="num">3</td><td class="num"><span class="comp bad">122,6%</span></td><td class="num">2</td><td class="num"><span class="comp bad">135,7%</span></td><td class="num">1</td><td class="num"><span class="comp good">96,6%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 123%</span></td></tr>
+<tr><td><strong>3Vs Nutrition</strong></td><td class="num">3</td><td class="num"><span class="comp bad">143,7%</span></td><td class="num">3</td><td class="num"><span class="comp bad">143,7%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 144%</span></td></tr>
+<tr><td><strong>Canibal Inc</strong></td><td class="num">3</td><td class="num"><span class="comp good">97,1%</span></td><td class="num">1</td><td class="num"><span class="comp bad">118,4%</span></td><td class="num">2</td><td class="num"><span class="comp good">86,4%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 97%</span></td></tr>
+<tr><td><strong>Chef Whey</strong></td><td class="num">3</td><td class="num"><span class="comp bad">115,0%</span></td><td class="num">2</td><td class="num"><span class="comp bad">126,3%</span></td><td class="num">1</td><td class="num"><span class="comp good">92,6%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 115%</span></td></tr>
+<tr><td><strong>Essential</strong></td><td class="num">3</td><td class="num"><span class="comp good">98,8%</span></td><td class="num">2</td><td class="num"><span class="comp bad">110,2%</span></td><td class="num">1</td><td class="num"><span class="comp good">76,0%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 99%</span></td></tr>
+<tr><td><strong>Health Labs</strong></td><td class="num">3</td><td class="num"><span class="comp bad">123,3%</span></td><td class="num">3</td><td class="num"><span class="comp bad">123,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 123%</span></td></tr>
+<tr><td><strong>Unilife</strong></td><td class="num">3</td><td class="num"><span class="comp bad">109,5%</span></td><td class="num">1</td><td class="num"><span class="comp bad">133,3%</span></td><td class="num">2</td><td class="num"><span class="comp good">97,7%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 110%</span></td></tr>
+<tr><td><strong>YoPRO</strong></td><td class="num">3</td><td class="num"><span class="comp good">92,8%</span></td><td class="num">1</td><td class="num"><span class="comp bad">105,6%</span></td><td class="num">2</td><td class="num"><span class="comp good">86,4%</span></td><td class="num">1 <span class="td-sub">/ 86%</span></td><td class="num">2 <span class="td-sub">/ 96%</span></td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Bsn Medical</strong></td><td class="num">2</td><td class="num"><span class="comp bad">130,6%</span></td><td class="num">2</td><td class="num"><span class="comp bad">130,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 131%</span></td></tr>
+<tr><td><strong>Danone</strong></td><td class="num">2</td><td class="num"><span class="comp bad">121,2%</span></td><td class="num">2</td><td class="num"><span class="comp bad">121,2%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 121%</span></td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Dux Nutrition</strong></td><td class="num">2</td><td class="num"><span class="comp bad">135,1%</span></td><td class="num">2</td><td class="num"><span class="comp bad">135,1%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 136%</span></td><td class="num">1 <span class="td-sub">/ 135%</span></td></tr>
+<tr><td><strong>Emana Suplementos</strong></td><td class="num">2</td><td class="num"><span class="comp bad">213,0%</span></td><td class="num">2</td><td class="num"><span class="comp bad">213,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">2 <span class="td-sub">/ 213%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Ftw</strong></td><td class="num">2</td><td class="num"><span class="comp bad">139,0%</span></td><td class="num">2</td><td class="num"><span class="comp bad">139,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 139%</span></td></tr>
+<tr><td><strong>Ftw Fitoway Labs</strong></td><td class="num">2</td><td class="num"><span class="comp bad">101,6%</span></td><td class="num">1</td><td class="num"><span class="comp bad">105,6%</span></td><td class="num">1</td><td class="num"><span class="comp good">97,6%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 102%</span></td></tr>
+<tr><td><strong>Iridium</strong></td><td class="num">2</td><td class="num"><span class="comp neutral">100,2%</span></td><td class="num">1</td><td class="num"><span class="comp bad">126,5%</span></td><td class="num">1</td><td class="num"><span class="comp good">73,9%</span></td><td class="num">2 <span class="td-sub">/ 100%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Lauton</strong></td><td class="num">2</td><td class="num"><span class="comp bad">128,2%</span></td><td class="num">1</td><td class="num"><span class="comp bad">156,5%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">2 <span class="td-sub">/ 128%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Now Foods</strong></td><td class="num">2</td><td class="num"><span class="comp bad">229,1%</span></td><td class="num">2</td><td class="num"><span class="comp bad">229,1%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 229%</span></td></tr>
+<tr><td><strong>Plant Power</strong></td><td class="num">2</td><td class="num"><span class="comp bad">127,1%</span></td><td class="num">2</td><td class="num"><span class="comp bad">127,1%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1 <span class="td-sub">/ 124%</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 130%</span></td></tr>
+<tr><td><strong>Prodiet</strong></td><td class="num">2</td><td class="num"><span class="comp good">97,0%</span></td><td class="num">1</td><td class="num"><span class="comp bad">102,7%</span></td><td class="num">1</td><td class="num"><span class="comp good">91,4%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 97%</span></td></tr>
+<tr><td><strong>Shark Pro</strong></td><td class="num">2</td><td class="num"><span class="comp bad">112,5%</span></td><td class="num">2</td><td class="num"><span class="comp bad">112,5%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 112%</span></td></tr>
+<tr><td><strong>Terramazonia</strong></td><td class="num">2</td><td class="num"><span class="comp good">90,9%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">2</td><td class="num"><span class="comp good">90,9%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 91%</span></td></tr>
+<tr><td><strong>X-Lab</strong></td><td class="num">2</td><td class="num"><span class="comp good">90,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">2</td><td class="num"><span class="comp good">90,3%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 90%</span></td></tr>
+<tr><td><strong>X-Pro Nutrition</strong></td><td class="num">2</td><td class="num"><span class="comp bad">129,3%</span></td><td class="num">2</td><td class="num"><span class="comp bad">129,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 129%</span></td></tr>
+<tr><td><strong>Anew</strong></td><td class="num">1</td><td class="num"><span class="comp neutral">100,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 100%</span></td></tr>
+<tr><td><strong>Apsen</strong></td><td class="num">1</td><td class="num"><span class="comp good">90,7%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1</td><td class="num"><span class="comp good">90,7%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 91%</span></td></tr>
+<tr><td><strong>Beltrat</strong></td><td class="num">1</td><td class="num"><span class="comp bad">119,8%</span></td><td class="num">1</td><td class="num"><span class="comp bad">119,8%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 120%</span></td></tr>
+<tr><td><strong>Caveira Preta</strong></td><td class="num">1</td><td class="num"><span class="comp bad">133,4%</span></td><td class="num">1</td><td class="num"><span class="comp bad">133,4%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 133%</span></td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Crea King</strong></td><td class="num">1</td><td class="num"><span class="comp neutral">100,3%</span></td><td class="num">1</td><td class="num"><span class="comp neutral">100,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 100%</span></td></tr>
+<tr><td><strong>Darkness</strong></td><td class="num">1</td><td class="num"><span class="comp bad">184,2%</span></td><td class="num">1</td><td class="num"><span class="comp bad">184,2%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 184%</span></td></tr>
+<tr><td><strong>Eat Clean</strong></td><td class="num">1</td><td class="num"><span class="comp neutral">100,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1 <span class="td-sub">/ 100%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Fisionutri</strong></td><td class="num">1</td><td class="num"><span class="comp bad">111,7%</span></td><td class="num">1</td><td class="num"><span class="comp bad">111,7%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 112%</span></td></tr>
+<tr><td><strong>Fresubin</strong></td><td class="num">1</td><td class="num"><span class="comp bad">109,6%</span></td><td class="num">1</td><td class="num"><span class="comp bad">109,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 110%</span></td></tr>
+<tr><td><strong>Iridium Labs</strong></td><td class="num">1</td><td class="num"><span class="comp bad">113,3%</span></td><td class="num">1</td><td class="num"><span class="comp bad">113,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 113%</span></td></tr>
+<tr><td><strong>Moving</strong></td><td class="num">1</td><td class="num"><span class="comp good">74,7%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1</td><td class="num"><span class="comp good">74,7%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 75%</span></td></tr>
+<tr><td><strong>Muscle Definition</strong></td><td class="num">1</td><td class="num"><span class="comp bad">114,3%</span></td><td class="num">1</td><td class="num"><span class="comp bad">114,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 114%</span></td></tr>
+<tr><td><strong>Muscletech</strong></td><td class="num">1</td><td class="num"><span class="comp bad">103,6%</span></td><td class="num">1</td><td class="num"><span class="comp bad">103,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 104%</span></td></tr>
+<tr><td><strong>Nestlé</strong></td><td class="num">1</td><td class="num"><span class="comp good">74,7%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1</td><td class="num"><span class="comp good">74,7%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 75%</span></td></tr>
+<tr><td><strong>Nutri Health</strong></td><td class="num">1</td><td class="num"><span class="comp bad">107,0%</span></td><td class="num">1</td><td class="num"><span class="comp bad">107,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 107%</span></td></tr>
+<tr><td><strong>Sudract</strong></td><td class="num">1</td><td class="num"><span class="comp bad">114,9%</span></td><td class="num">1</td><td class="num"><span class="comp bad">114,9%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 115%</span></td></tr>
+<tr><td><strong>Sésamo Real</strong></td><td class="num">1</td><td class="num"><span class="comp bad">150,1%</span></td><td class="num">1</td><td class="num"><span class="comp bad">150,1%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 150%</span></td></tr>
+<tr><td><strong>Taiff</strong></td><td class="num">1</td><td class="num"><span class="comp bad">117,6%</span></td><td class="num">1</td><td class="num"><span class="comp bad">117,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 118%</span></td></tr>
+<tr><td><strong>Uêvo</strong></td><td class="num">1</td><td class="num"><span class="comp neutral">100,5%</span></td><td class="num">1</td><td class="num"><span class="comp neutral">100,5%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 100%</span></td></tr>
+<tr><td><strong>Yamá</strong></td><td class="num">1</td><td class="num"><span class="comp good">65,8%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1</td><td class="num"><span class="comp good">65,8%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 66%</span></td></tr></tbody></table></div>
+  </div>
+</section>
+
+<!-- ============ 6. VENDEDORES ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">06 &middot; Vendedores</span>
+      <h2>Competitividade por vendedor</h2>
+      <p>Ordenado por volume de SKUs. A Raia (1P) atua nos grupos 1P Exclusivo e 1P + 3P; sellers atuam em 1P + 3P e 3P Exclusivo.</p>
+    </div>
+    <div class="table-wrap"><table>
+      <thead>
+        <tr>
+          <th rowspan="2">Vendedor</th><th rowspan="2" class="num">SKUs</th><th rowspan="2" class="num">Compet.</th>
+          <th colspan="2" class="center group-th">Mais caros</th><th colspan="2" class="center group-th">Mais baratos</th>
+          <th colspan="3" class="center group-th">Grupos &mdash; SKUs / Compet.</th>
+        </tr>
+        <tr>
+          <th class="num">Qtd</th><th class="num">Compet.</th>
+          <th class="num">Qtd</th><th class="num">Compet.</th>
+          <th class="num">1P Excl.</th><th class="num">1P + 3P</th><th class="num">3P Excl.</th>
+        </tr>
+      </thead><tbody><tr><td><strong>Suplementos Pinhais</strong></td><td class="num">156</td><td class="num"><span class="comp bad">141,7%</span></td><td class="num">143</td><td class="num"><span class="comp bad">146,4%</span></td><td class="num">11</td><td class="num"><span class="comp good">88,4%</span></td><td class="num dim">&ndash;</td><td class="num">18 <span class="td-sub">/ 160%</span></td><td class="num">138 <span class="td-sub">/ 139%</span></td></tr>
+<tr><td><strong>Otimanutri</strong></td><td class="num">119</td><td class="num"><span class="comp bad">145,6%</span></td><td class="num">115</td><td class="num"><span class="comp bad">147,2%</span></td><td class="num">4</td><td class="num"><span class="comp good">98,2%</span></td><td class="num dim">&ndash;</td><td class="num">8 <span class="td-sub">/ 142%</span></td><td class="num">111 <span class="td-sub">/ 146%</span></td></tr>
+<tr><td><strong>Raia</strong></td><td class="num">105</td><td class="num"><span class="comp bad">118,1%</span></td><td class="num">70</td><td class="num"><span class="comp bad">133,1%</span></td><td class="num">20</td><td class="num"><span class="comp good">79,1%</span></td><td class="num">54 <span class="td-sub">/ 117%</span></td><td class="num">51 <span class="td-sub">/ 119%</span></td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Capital Fitness</strong></td><td class="num">70</td><td class="num"><span class="comp bad">117,3%</span></td><td class="num">54</td><td class="num"><span class="comp bad">129,1%</span></td><td class="num">16</td><td class="num"><span class="comp good">77,4%</span></td><td class="num dim">&ndash;</td><td class="num">11 <span class="td-sub">/ 124%</span></td><td class="num">59 <span class="td-sub">/ 116%</span></td></tr>
+<tr><td><strong>Boomi</strong></td><td class="num">68</td><td class="num"><span class="comp bad">104,7%</span></td><td class="num">47</td><td class="num"><span class="comp bad">108,4%</span></td><td class="num">21</td><td class="num"><span class="comp good">96,4%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">68 <span class="td-sub">/ 105%</span></td></tr>
+<tr><td><strong>Mentalidade Fit</strong></td><td class="num">52</td><td class="num"><span class="comp bad">113,9%</span></td><td class="num">39</td><td class="num"><span class="comp bad">124,9%</span></td><td class="num">12</td><td class="num"><span class="comp good">79,4%</span></td><td class="num dim">&ndash;</td><td class="num">4 <span class="td-sub">/ 114%</span></td><td class="num">48 <span class="td-sub">/ 114%</span></td></tr>
+<tr><td><strong>New Nutrition</strong></td><td class="num">41</td><td class="num"><span class="comp bad">104,5%</span></td><td class="num">20</td><td class="num"><span class="comp bad">113,0%</span></td><td class="num">16</td><td class="num"><span class="comp good">95,4%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">41 <span class="td-sub">/ 105%</span></td></tr>
+<tr><td><strong>Dux Nutrition</strong></td><td class="num">40</td><td class="num"><span class="comp bad">118,2%</span></td><td class="num">38</td><td class="num"><span class="comp bad">119,2%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">10 <span class="td-sub">/ 126%</span></td><td class="num">30 <span class="td-sub">/ 116%</span></td></tr>
+<tr><td><strong>Nutra Core Suplementos</strong></td><td class="num">35</td><td class="num"><span class="comp bad">119,1%</span></td><td class="num">24</td><td class="num"><span class="comp bad">134,8%</span></td><td class="num">10</td><td class="num"><span class="comp good">83,2%</span></td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 138%</span></td><td class="num">32 <span class="td-sub">/ 117%</span></td></tr>
+<tr><td><strong>Suplementos Brasil</strong></td><td class="num">24</td><td class="num"><span class="comp bad">110,2%</span></td><td class="num">19</td><td class="num"><span class="comp bad">117,0%</span></td><td class="num">5</td><td class="num"><span class="comp good">84,3%</span></td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 120%</span></td><td class="num">21 <span class="td-sub">/ 109%</span></td></tr>
+<tr><td><strong>Mundo Verde</strong></td><td class="num">21</td><td class="num"><span class="comp bad">119,6%</span></td><td class="num">18</td><td class="num"><span class="comp bad">123,2%</span></td><td class="num">2</td><td class="num"><span class="comp good">97,1%</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 118%</span></td><td class="num">20 <span class="td-sub">/ 120%</span></td></tr>
+<tr><td><strong>GMM Suplementos</strong></td><td class="num">20</td><td class="num"><span class="comp bad">129,3%</span></td><td class="num">18</td><td class="num"><span class="comp bad">133,2%</span></td><td class="num">2</td><td class="num"><span class="comp good">93,8%</span></td><td class="num dim">&ndash;</td><td class="num">5 <span class="td-sub">/ 137%</span></td><td class="num">15 <span class="td-sub">/ 127%</span></td></tr>
+<tr><td><strong>Ibalance Suplementos</strong></td><td class="num">16</td><td class="num"><span class="comp bad">117,0%</span></td><td class="num">10</td><td class="num"><span class="comp bad">133,4%</span></td><td class="num">6</td><td class="num"><span class="comp good">89,7%</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 127%</span></td><td class="num">14 <span class="td-sub">/ 115%</span></td></tr>
+<tr><td><strong>Toda Vida</strong></td><td class="num">16</td><td class="num"><span class="comp bad">110,7%</span></td><td class="num">9</td><td class="num"><span class="comp bad">137,4%</span></td><td class="num">7</td><td class="num"><span class="comp good">76,4%</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 106%</span></td><td class="num">14 <span class="td-sub">/ 111%</span></td></tr>
+<tr><td><strong>Dark Lab</strong></td><td class="num">15</td><td class="num"><span class="comp bad">108,1%</span></td><td class="num">4</td><td class="num"><span class="comp bad">130,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">15 <span class="td-sub">/ 108%</span></td></tr>
+<tr><td><strong>Extra Fórmulas</strong></td><td class="num">15</td><td class="num"><span class="comp bad">155,4%</span></td><td class="num">15</td><td class="num"><span class="comp bad">155,4%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 172%</span></td><td class="num">13 <span class="td-sub">/ 153%</span></td></tr>
+<tr><td><strong>Strong Now Suplementos</strong></td><td class="num">14</td><td class="num"><span class="comp bad">117,2%</span></td><td class="num">11</td><td class="num"><span class="comp bad">123,0%</span></td><td class="num">1</td><td class="num"><span class="comp good">87,8%</span></td><td class="num dim">&ndash;</td><td class="num">4 <span class="td-sub">/ 113%</span></td><td class="num">10 <span class="td-sub">/ 119%</span></td></tr>
+<tr><td><strong>Lemon Co.</strong></td><td class="num">10</td><td class="num"><span class="comp bad">104,9%</span></td><td class="num">6</td><td class="num"><span class="comp bad">115,5%</span></td><td class="num">3</td><td class="num"><span class="comp good">85,5%</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 107%</span></td><td class="num">8 <span class="td-sub">/ 104%</span></td></tr>
+<tr><td><strong>Body Builders</strong></td><td class="num">8</td><td class="num"><span class="comp bad">112,7%</span></td><td class="num">7</td><td class="num"><span class="comp bad">116,0%</span></td><td class="num">1</td><td class="num"><span class="comp good">89,4%</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 133%</span></td><td class="num">7 <span class="td-sub">/ 110%</span></td></tr>
+<tr><td><strong>Fabricante Online</strong></td><td class="num">8</td><td class="num"><span class="comp bad">104,9%</span></td><td class="num">4</td><td class="num"><span class="comp bad">111,1%</span></td><td class="num">2</td><td class="num"><span class="comp good">97,6%</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 100%</span></td><td class="num">6 <span class="td-sub">/ 107%</span></td></tr>
+<tr><td><strong>Da Fabrica</strong></td><td class="num">7</td><td class="num"><span class="comp bad">109,3%</span></td><td class="num">5</td><td class="num"><span class="comp bad">120,0%</span></td><td class="num">2</td><td class="num"><span class="comp good">82,6%</span></td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 110%</span></td><td class="num">4 <span class="td-sub">/ 109%</span></td></tr>
+<tr><td><strong>INTL Laboratórios</strong></td><td class="num">7</td><td class="num"><span class="comp bad">112,0%</span></td><td class="num">4</td><td class="num"><span class="comp bad">133,2%</span></td><td class="num">3</td><td class="num"><span class="comp good">83,8%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">7 <span class="td-sub">/ 112%</span></td></tr>
+<tr><td><strong>RW Med Saúde</strong></td><td class="num">7</td><td class="num"><span class="comp bad">132,2%</span></td><td class="num">7</td><td class="num"><span class="comp bad">132,2%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 118%</span></td><td class="num">5 <span class="td-sub">/ 138%</span></td></tr>
+<tr><td><strong>WebContinental</strong></td><td class="num">7</td><td class="num"><span class="comp bad">138,6%</span></td><td class="num">6</td><td class="num"><span class="comp bad">146,5%</span></td><td class="num">1</td><td class="num"><span class="comp good">91,4%</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 188%</span></td><td class="num">6 <span class="td-sub">/ 130%</span></td></tr>
+<tr><td><strong>Meliz Suplementos</strong></td><td class="num">6</td><td class="num"><span class="comp bad">126,8%</span></td><td class="num">6</td><td class="num"><span class="comp bad">126,8%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 146%</span></td><td class="num">5 <span class="td-sub">/ 123%</span></td></tr>
+<tr><td><strong>Black Skull USA</strong></td><td class="num">5</td><td class="num"><span class="comp bad">132,5%</span></td><td class="num">4</td><td class="num"><span class="comp bad">143,5%</span></td><td class="num">1</td><td class="num"><span class="comp good">88,6%</span></td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 134%</span></td><td class="num">2 <span class="td-sub">/ 130%</span></td></tr>
+<tr><td><strong>Taurene</strong></td><td class="num">5</td><td class="num"><span class="comp bad">115,4%</span></td><td class="num">5</td><td class="num"><span class="comp bad">115,4%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 120%</span></td><td class="num">4 <span class="td-sub">/ 114%</span></td></tr>
+<tr><td><strong>AWE Sports Nutrition</strong></td><td class="num">4</td><td class="num"><span class="comp good">88,4%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">4</td><td class="num"><span class="comp good">88,4%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">4 <span class="td-sub">/ 88%</span></td></tr>
+<tr><td><strong>WVegan</strong></td><td class="num">4</td><td class="num"><span class="comp good">89,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">3</td><td class="num"><span class="comp good">85,3%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">4 <span class="td-sub">/ 89%</span></td></tr>
+<tr><td><strong>Isara Fit</strong></td><td class="num">3</td><td class="num"><span class="comp bad">123,3%</span></td><td class="num">3</td><td class="num"><span class="comp bad">123,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 123%</span></td></tr>
+<tr><td><strong>Nutrifor Suplementos</strong></td><td class="num">3</td><td class="num"><span class="comp bad">104,2%</span></td><td class="num">2</td><td class="num"><span class="comp bad">107,8%</span></td><td class="num">1</td><td class="num"><span class="comp good">97,0%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 104%</span></td></tr>
+<tr><td><strong>SB Box</strong></td><td class="num">3</td><td class="num"><span class="comp bad">103,7%</span></td><td class="num">1</td><td class="num"><span class="comp bad">111,2%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 104%</span></td></tr>
+<tr><td><strong>Sanavita</strong></td><td class="num">3</td><td class="num"><span class="comp bad">108,1%</span></td><td class="num">2</td><td class="num"><span class="comp bad">113,3%</span></td><td class="num">1</td><td class="num"><span class="comp good">97,7%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 108%</span></td></tr>
+<tr><td><strong>Vita Nutrition</strong></td><td class="num">3</td><td class="num"><span class="comp neutral">99,9%</span></td><td class="num">1</td><td class="num"><span class="comp bad">102,6%</span></td><td class="num">1</td><td class="num"><span class="comp good">96,9%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 100%</span></td></tr>
+<tr><td><strong>Vitaplace</strong></td><td class="num">3</td><td class="num"><span class="comp bad">115,9%</span></td><td class="num">2</td><td class="num"><span class="comp bad">125,8%</span></td><td class="num">1</td><td class="num"><span class="comp good">96,0%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">3 <span class="td-sub">/ 116%</span></td></tr>
+<tr><td><strong>Black Suplementos</strong></td><td class="num">2</td><td class="num"><span class="comp good">87,1%</span></td><td class="num">1</td><td class="num"><span class="comp bad">110,8%</span></td><td class="num">1</td><td class="num"><span class="comp good">63,4%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 87%</span></td></tr>
+<tr><td><strong>Fast Flash</strong></td><td class="num">2</td><td class="num"><span class="comp bad">124,2%</span></td><td class="num">2</td><td class="num"><span class="comp bad">124,2%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 109%</span></td><td class="num">1 <span class="td-sub">/ 139%</span></td></tr>
+<tr><td><strong>Mix Age Dual Store</strong></td><td class="num">2</td><td class="num"><span class="comp good">97,7%</span></td><td class="num">1</td><td class="num"><span class="comp bad">108,1%</span></td><td class="num">1</td><td class="num"><span class="comp good">87,4%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 98%</span></td></tr>
+<tr><td><strong>Natulha</strong></td><td class="num">2</td><td class="num"><span class="comp bad">104,6%</span></td><td class="num">1</td><td class="num"><span class="comp bad">109,1%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 105%</span></td></tr>
+<tr><td><strong>Origem Mercado</strong></td><td class="num">2</td><td class="num"><span class="comp bad">134,0%</span></td><td class="num">2</td><td class="num"><span class="comp bad">134,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 134%</span></td></tr>
+<tr><td><strong>Rocha Saúde</strong></td><td class="num">2</td><td class="num"><span class="comp bad">112,5%</span></td><td class="num">2</td><td class="num"><span class="comp bad">112,5%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 112%</span></td></tr>
+<tr><td><strong>Sampa Fit</strong></td><td class="num">2</td><td class="num"><span class="comp bad">152,5%</span></td><td class="num">2</td><td class="num"><span class="comp bad">152,5%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 152%</span></td></tr>
+<tr><td><strong>Supletotal</strong></td><td class="num">2</td><td class="num"><span class="comp bad">123,1%</span></td><td class="num">2</td><td class="num"><span class="comp bad">123,1%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 123%</span></td></tr>
+<tr><td><strong>Swanson Brasil</strong></td><td class="num">2</td><td class="num"><span class="comp bad">229,1%</span></td><td class="num">2</td><td class="num"><span class="comp bad">229,1%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 229%</span></td></tr>
+<tr><td><strong>Toledo&#x27;s Emporium</strong></td><td class="num">2</td><td class="num"><span class="comp bad">116,6%</span></td><td class="num">2</td><td class="num"><span class="comp bad">116,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num">2 <span class="td-sub">/ 117%</span></td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Aquiles Nutrition</strong></td><td class="num">1</td><td class="num"><span class="comp neutral">100,5%</span></td><td class="num">1</td><td class="num"><span class="comp neutral">100,5%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 100%</span></td></tr>
+<tr><td><strong>Click Whey</strong></td><td class="num">1</td><td class="num"><span class="comp bad">116,0%</span></td><td class="num">1</td><td class="num"><span class="comp bad">116,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 116%</span></td></tr>
+<tr><td><strong>Cyber Nutrition</strong></td><td class="num">1</td><td class="num"><span class="comp bad">103,6%</span></td><td class="num">1</td><td class="num"><span class="comp bad">103,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 104%</span></td></tr>
+<tr><td><strong>Essencial Fitness</strong></td><td class="num">1</td><td class="num"><span class="comp good">92,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1</td><td class="num"><span class="comp good">92,6%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 93%</span></td></tr>
+<tr><td><strong>Fran Makes</strong></td><td class="num">1</td><td class="num"><span class="comp bad">117,6%</span></td><td class="num">1</td><td class="num"><span class="comp bad">117,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 118%</span></td></tr>
+<tr><td><strong>Grupo Fenelon</strong></td><td class="num">1</td><td class="num"><span class="comp good">93,8%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1</td><td class="num"><span class="comp good">93,8%</span></td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 94%</span></td><td class="num dim">&ndash;</td></tr>
+<tr><td><strong>Linha Saúde Suplementos</strong></td><td class="num">1</td><td class="num"><span class="comp bad">133,3%</span></td><td class="num">1</td><td class="num"><span class="comp bad">133,3%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 133%</span></td></tr>
+<tr><td><strong>Loja Oficial Nestle Nutre</strong></td><td class="num">1</td><td class="num"><span class="comp good">74,7%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1</td><td class="num"><span class="comp good">74,7%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 75%</span></td></tr>
+<tr><td><strong>MP Nutrição Esportiva</strong></td><td class="num">1</td><td class="num"><span class="comp bad">118,7%</span></td><td class="num">1</td><td class="num"><span class="comp bad">118,7%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 119%</span></td></tr>
+<tr><td><strong>NV Beauty Shop</strong></td><td class="num">1</td><td class="num"><span class="comp bad">147,6%</span></td><td class="num">1</td><td class="num"><span class="comp bad">147,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 148%</span></td></tr>
+<tr><td><strong>Nova Era Cosméticos</strong></td><td class="num">1</td><td class="num"><span class="comp bad">119,8%</span></td><td class="num">1</td><td class="num"><span class="comp bad">119,8%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 120%</span></td></tr>
+<tr><td><strong>Nutriclean Suplementos</strong></td><td class="num">1</td><td class="num"><span class="comp bad">106,6%</span></td><td class="num">1</td><td class="num"><span class="comp bad">106,6%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 107%</span></td></tr>
+<tr><td><strong>Nutriela</strong></td><td class="num">1</td><td class="num"><span class="comp neutral">100,0%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 100%</span></td></tr>
+<tr><td><strong>Real Suplementos</strong></td><td class="num">1</td><td class="num"><span class="comp bad">107,1%</span></td><td class="num">1</td><td class="num"><span class="comp bad">107,1%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 107%</span></td></tr>
+<tr><td><strong>Top Popular</strong></td><td class="num">1</td><td class="num"><span class="comp good">90,7%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1</td><td class="num"><span class="comp good">90,7%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 91%</span></td></tr>
+<tr><td><strong>Viver Bem</strong></td><td class="num">1</td><td class="num"><span class="comp good">65,8%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num">1</td><td class="num"><span class="comp good">65,8%</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 66%</span></td></tr>
+<tr><td><strong>W3 Life</strong></td><td class="num">1</td><td class="num"><span class="comp bad">130,1%</span></td><td class="num">1</td><td class="num"><span class="comp bad">130,1%</span></td><td class="num">0</td><td class="num"><span class="comp ">&ndash;</span></td><td class="num dim">&ndash;</td><td class="num dim">&ndash;</td><td class="num">1 <span class="td-sub">/ 130%</span></td></tr></tbody></table></div>
+  </div>
+</section>
+
+<!-- ============ 7. ANALISES COMPLEMENTARES ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">07 &middot; An&aacute;lises complementares</span>
+      <h2>Onde o gap est&aacute; concentrado</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Competitividade por faixa de pre&ccedil;o (Amazon)</h3>
+        <div class="sub">O gap &eacute; maior no t&iacute;quete intermedi&aacute;rio</div>
+        <div class="table-wrap" style="box-shadow:none;border:none;"><table style="min-width:0;">
+          <thead><tr><th>Faixa de pre&ccedil;o</th><th class="num">SKUs</th><th class="num">Compet.</th></tr></thead>
+          <tbody><tr><td><strong>Até R$25</strong></td><td class="num">116</td><td class="num"><span class="comp bad">105,0%</span></td></tr><tr><td><strong>R$25-50</strong></td><td class="num">19</td><td class="num"><span class="comp bad">100,9%</span></td></tr><tr><td><strong>R$50-100</strong></td><td class="num">107</td><td class="num"><span class="comp bad">149,0%</span></td></tr><tr><td><strong>R$100-150</strong></td><td class="num">216</td><td class="num"><span class="comp bad">129,7%</span></td></tr><tr><td><strong>R$150-250</strong></td><td class="num">325</td><td class="num"><span class="comp bad">122,6%</span></td></tr><tr><td><strong>R$250+</strong></td><td class="num">177</td><td class="num"><span class="comp bad">116,5%</span></td></tr></tbody>
+        </table></div>
+        <div class="legend-note">O maior gap est&aacute; na faixa R$ 50&ndash;100 (149%), t&iacute;pica de whey de entrada e embalagens menores. Nos itens acima de R$ 250 &mdash; potes grandes e kits, onde o t&iacute;quete pesa mais &mdash; a competitividade cai para 117%.</div>
+      </div>
+      <div class="panel">
+        <h3>Status das ofertas</h3>
+        <div class="sub">Participa&ccedil;&atilde;o de cada status na base</div>
+        <div class="chart-box"><canvas id="chStatus"></canvas></div>
+      </div>
+    </div>
+
+    <div class="mt panel">
+      <span class="badge">Top 10</span>
+      <h3>Maiores gaps de pre&ccedil;o (mais caros vs Amazon)</h3>
+      <div class="sub">Ofertas com maior raz&atilde;o pre&ccedil;o Raia &divide; pre&ccedil;o Amazon &middot; matches validados por equival&ecirc;ncia de URL e revis&atilde;o manual</div>
+      <div class="table-wrap"><table>
+      <thead><tr><th>Produto</th><th>Vendedor</th><th class="num">Pre&ccedil;o Raia</th><th class="num">Pre&ccedil;o Amazon</th><th class="num">Compet.</th></tr></thead>
+      <tbody><tr>
+          <td>Glicerina Vegetal Puro 118ml Now Foods Multiuso Importado<br><span class="td-sub">Now Foods &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/glicerina-vegetal-118ml-now-foods-vegetable-glycerin-puro-formulacao-concentrada-no-brasil-1329961.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Vegetais-glicerina-Now-Solutions-Ounce/dp/B0015C0RIC/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Swanson Brasil</td>
+          <td class="num">R$ 83,24</td>
+          <td class="num">R$ 24,00</td>
+          <td class="num"><span class="comp bad">347%</span></td>
+        </tr><tr>
+          <td>100% Whey Protein Concentrate 900g Chocolate Max Titanium<br><span class="td-sub">Max Titanium &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/100-whey-protein-concentrate-900g-chocolate-max-titanium-632339.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/100-Whey-900G-Chocolate-Titanium/dp/B08N355S9G/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Extra Fórmulas</td>
+          <td class="num">R$ 199,90</td>
+          <td class="num">R$ 79,90</td>
+          <td class="num"><span class="comp bad">250%</span></td>
+        </tr><tr>
+          <td>Whey 100% Hd Refil (900g) - Sabor: Cookies<br><span class="td-sub">Black Skull &middot; 1P + 3P &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/whey-100-hd-refil-900g-sabor-cookies-883164.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Whey-100-Hd-Refil-Cookies/dp/B09BXLCHF9/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Suplementos Pinhais</td>
+          <td class="num">R$ 169,35</td>
+          <td class="num">R$ 69,98</td>
+          <td class="num"><span class="comp bad">242%</span></td>
+        </tr><tr>
+          <td>Whey 100% Hd Gourmet Refil (900g) - Sabor: Sorvete de Chocolate<br><span class="td-sub">Black Skull &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/whey-100-hd-gourmet-refil-900g-sabor-sorvete-de-chocolate-1124300.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/REFIL-POUCH-GOURMET-SORVETE-CHOCOLATE/dp/B0D1VW2VPZ/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Suplementos Pinhais</td>
+          <td class="num">R$ 156,30</td>
+          <td class="num">R$ 70,19</td>
+          <td class="num"><span class="comp bad">223%</span></td>
+        </tr><tr>
+          <td>Whey Protein Emana Chocolate Belga em Pó 450g<br><span class="td-sub">Emana Suplementos &middot; 1P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/emana-whey-protein-em-po-chocolate-belga-450g-1168093.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Emana-Suplemento-Alimentar-Protein-Chocolate/dp/B0D3VPQGV5/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Raia</td>
+          <td class="num">R$ 185,99</td>
+          <td class="num">R$ 84,90</td>
+          <td class="num"><span class="comp bad">219%</span></td>
+        </tr><tr>
+          <td>Whey Concentrado W100 Sache Kit 3 Un Nutrata 30g - Duplo Chocolate<br><span class="td-sub">Nutrata &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/whey-concentrado-w100-sache-kit-3-un-nutrata-30g-duplo-chocolate-1284839.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/W100-Whey-Concentrado-Chocolate-Nutrata/dp/B0CSDZY92S/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Toda Vida</td>
+          <td class="num">R$ 37,90</td>
+          <td class="num">R$ 17,63</td>
+          <td class="num"><span class="comp bad">215%</span></td>
+        </tr><tr>
+          <td>Whey 100% Hd Refil (900G) - Cookies<br><span class="td-sub">Black Skull &middot; 1P + 3P &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/whey-100-hd-refil-900g-cookies-1435372.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Whey-100-Hd-Refil-Cookies/dp/B09BXLCHF9/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>GMM Suplementos</td>
+          <td class="num">R$ 149,90</td>
+          <td class="num">R$ 69,98</td>
+          <td class="num"><span class="comp bad">214%</span></td>
+        </tr><tr>
+          <td>Whey Protein Body Action 100% Whey Prime Morango Refíl 900g<br><span class="td-sub">Body Action &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/100-whey-prime-900g-refil-morango-bodyaction-728289.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/100-Whey-Prime-Morango-Action/dp/B094LB5SHH/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Otimanutri</td>
+          <td class="num">R$ 149,38</td>
+          <td class="num">R$ 72,11</td>
+          <td class="num"><span class="comp bad">207%</span></td>
+        </tr><tr>
+          <td>Whey Protein Emana Coco em Pó 450g<br><span class="td-sub">Emana Suplementos &middot; 1P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/emana-whey-protein-em-po-coco-450g-1168094.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Emana-Suplemento-Alimentar-Protein-Ado%C3%A7ado/dp/B0D3WQSD5Z/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Raia</td>
+          <td class="num">R$ 185,99</td>
+          <td class="num">R$ 89,90</td>
+          <td class="num"><span class="comp bad">207%</span></td>
+        </tr><tr>
+          <td>Whey 100% Hd Refil (900g) - Sabor: Morango<br><span class="td-sub">Black Skull &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/whey-100-hd-refil-900g-sabor-morango-883142.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Whey-100-Hd-Refil-Morango/dp/B09BXKDPR2/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Suplementos Pinhais</td>
+          <td class="num">R$ 172,90</td>
+          <td class="num">R$ 84,99</td>
+          <td class="num"><span class="comp bad">203%</span></td>
+        </tr></tbody></table></div>
+    </div>
+    <div class="mt panel">
+      <span class="badge">Top 10</span>
+      <h3>Melhores pre&ccedil;os vs Amazon (mais baratos)</h3>
+      <div class="sub">Ofertas em que o site da Raia est&aacute; mais competitivo &middot; matches validados por equival&ecirc;ncia de URL e revis&atilde;o manual</div>
+      <div class="table-wrap"><table>
+      <thead><tr><th>Produto</th><th>Vendedor</th><th class="num">Pre&ccedil;o Raia</th><th class="num">Pre&ccedil;o Amazon</th><th class="num">Compet.</th></tr></thead>
+      <tbody><tr>
+          <td>TRUE WHEY DISPLAY 320G (10 SACHêS DE 32G) - HIDROLISADO E ISOLADO - SABOR: CHOCOLATE E AVELã<br><span class="td-sub">True &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/true-whey-display-320g-10-saches-de-32g-hidrolisado-e-isolado-sabor-chocolate-e-avela-1298349.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/True-Whey-Display-320g-Sach%C3%AAs/dp/B0CQ3D1NTD/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Nutra Core Suplementos</td>
+          <td class="num">R$ 159,90</td>
+          <td class="num">R$ 365,28</td>
+          <td class="num"><span class="comp good">44%</span></td>
+        </tr><tr>
+          <td>Whey W100 Nutrata Morango Sachê 30g<br><span class="td-sub">Nutrata &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/whey-w100-nutrata-morango-sache-30g-1252419.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/W100-Whey-Concentrado-Morango-Nutrata/dp/B0CSF1L6HL/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Capital Fitness</td>
+          <td class="num">R$ 12,02</td>
+          <td class="num">R$ 24,77</td>
+          <td class="num"><span class="comp good">49%</span></td>
+        </tr><tr>
+          <td>Body Coffee Protein Sachê (15g) - Sabor: Vanilla<br><span class="td-sub">Equaliv &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/body-coffee-protein-sache-15g-sabor-vanilla-1308201.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Body-Coffee-Protein-Sach%C3%AA-Vanilla/dp/B0D3VJ8M2C/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Nutra Core Suplementos</td>
+          <td class="num">R$ 10,75</td>
+          <td class="num">R$ 21,15</td>
+          <td class="num"><span class="comp good">51%</span></td>
+        </tr><tr>
+          <td>Body Coffee Protein Sachê (15g) - Sabor: Vanilla<br><span class="td-sub">Equaliv &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/body-coffee-protein-sache-15g-sabor-vanilla-1196743.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Body-Coffee-Protein-Sach%C3%AA-Vanilla/dp/B0D3VJ8M2C/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Mentalidade Fit</td>
+          <td class="num">R$ 10,75</td>
+          <td class="num">R$ 21,15</td>
+          <td class="num"><span class="comp good">51%</span></td>
+        </tr><tr>
+          <td>Best Whey Sachê (35g) - Sabor: Chocolate Branco<br><span class="td-sub">Atlhetica Nutrition &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/best-whey-sache-35g-sabor-chocolate-branco-1009501.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Atlhetica-Nutrition-Prote%C3%ADna-Chocolate-Branco/dp/B08BS13GP8/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Mentalidade Fit</td>
+          <td class="num">R$ 12,15</td>
+          <td class="num">R$ 22,31</td>
+          <td class="num"><span class="comp good">54%</span></td>
+        </tr><tr>
+          <td>Best Whey Atlhetica Nutrition Dadinho Sachê 40g<br><span class="td-sub">Best Whey &middot; 1P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/atlhetica-nutrition-best-whey-dadinho-premium-35g.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Best-Whey-Sach%C3%AA-35g-Amendoim/dp/B0CX98ZCFQ/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Raia</td>
+          <td class="num">R$ 15,73</td>
+          <td class="num">R$ 25,99</td>
+          <td class="num"><span class="comp good">61%</span></td>
+        </tr><tr>
+          <td>Sache Isolate Protein New Millen 30g - Morango - Sem Gluein - Origem Bovina<br><span class="td-sub">New Millen &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/sache-isolate-protein-new-millen-30g-morango-sem-gluein-origem-bovina-1284846.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Isolate-Protein-Zero-Lactose-Morango/dp/B0FHM2BQ87/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Toda Vida</td>
+          <td class="num">R$ 12,00</td>
+          <td class="num">R$ 19,06</td>
+          <td class="num"><span class="comp good">63%</span></td>
+        </tr><tr>
+          <td>Sache Isolate Protein New Millen 30g - Baunilha - Sem Gluein - Origem Bovina<br><span class="td-sub">New Millen &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/sache-isolate-protein-new-millen-30g-baunilha-sem-gluein-origem-bovina-1284836.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Isolate-Protein-Zero-Lactose-Baunilha/dp/B0FHLVTZQD/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Toda Vida</td>
+          <td class="num">R$ 12,00</td>
+          <td class="num">R$ 19,06</td>
+          <td class="num"><span class="comp good">63%</span></td>
+        </tr><tr>
+          <td>Sache Isolate Protein New Millen 30g - Pessego e Manga - Sem Gluein - Origem Bovina<br><span class="td-sub">New Millen &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/sache-isolate-protein-new-millen-30g-pessego-e-manga-sem-gluein-origem-bovina-1284829.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Isolate-Protein-Zero-Lactose-P%C3%AAssego/dp/B0FHLPGPJD/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Toda Vida</td>
+          <td class="num">R$ 12,00</td>
+          <td class="num">R$ 19,06</td>
+          <td class="num"><span class="comp good">63%</span></td>
+        </tr><tr>
+          <td>Whey Grego Bar (40g) - Sabor: Cookies e Cream<br><span class="td-sub">Nutrata &middot; 3P Exclusivo &middot; clique e confira &gt; <a href="https://www.drogaraia.com.br/whey-grego-bar-40g-sabor-cookies-e-cream-1254731.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Raia</a> e <a href="https://www.amazon.com.br/Barra-Whey-Grego-Bar-Unidade/dp/B0DYK7DDTB/ref=sr_1_1" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Amazon</a></span></td>
+          <td>Black Suplementos</td>
+          <td class="num">R$ 8,13</td>
+          <td class="num">R$ 12,83</td>
+          <td class="num"><span class="comp good">63%</span></td>
+        </tr></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. METODOLOGIA ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">08 &middot; Metodologia</span>
+      <h2>Notas e defini&ccedil;&otilde;es</h2>
+    </div>
+    <div class="panel">
+      <ul style="margin:0;padding-left:18px;color:var(--muted);font-size:14px;display:flex;flex-direction:column;gap:8px;">
+        <li><strong>Base:</strong> 1.026 registros extra&iacute;dos de 42 p&aacute;ginas da categoria whey protein no site da Droga Raia em 04/07/2026, comparados com a Amazon (fonte: live).</li>
+        <li><strong>Oferta (SKU):</strong> combina&ccedil;&atilde;o produto (EAN) &times; vendedor. Um EAN pode gerar v&aacute;rias ofertas.</li>
+        <li><strong>Competitividade:</strong> pre&ccedil;o no site da Raia &divide; pre&ccedil;o na Amazon, em %. 100% = paridade; acima = mais caro.</li>
+        <li><strong>Competitividade menor pre&ccedil;o:</strong> para cada EAN, considera-se apenas o menor pre&ccedil;o dispon&iacute;vel entre os vendedores da Raia, comparado com o pre&ccedil;o da Amazon.</li>
+        <li><strong>Grupos:</strong> 1P Exclusivo (apenas Raia vende o EAN), 1P + 3P (Raia e sellers vendem), 3P Exclusivo (apenas sellers).</li>
+        <li><strong>Status:</strong> classifica&ccedil;&atilde;o original da coleta (mais caro / mais barato / igual) por oferta.</li>
+        <li><strong>M&eacute;dias:</strong> m&eacute;dias simples das raz&otilde;es de pre&ccedil;o por oferta (n&atilde;o ponderadas por venda).</li>
+        <li><strong>Valida&ccedil;&atilde;o de match:</strong> cada par de URLs (Raia &times; Amazon) foi validado por equival&ecirc;ncia de produto &mdash; presen&ccedil;a da marca no endere&ccedil;o da Amazon, termos da categoria (whey, protein, creatina etc.) e sobreposi&ccedil;&atilde;o de palavras entre os dois endere&ccedil;os &mdash; complementada por revis&atilde;o manual. O resultado est&aacute; nas colunas <span class="mono">match</span> (Certo / Errado) e <span class="mono">match_obs</span> do arquivo consolidado.xlsx.</li>
+        <li><strong>Exclus&otilde;es por match errado:</strong> 22 registros &mdash; 4 com URL da Amazon de outra categoria (ex.: kits de whey comparados com perfume, hidratante e itens de decora&ccedil;&atilde;o) e 18 com match kit &times; unidade (ex.: caixa ou kit de sach&ecirc;s na Raia comparado ao pre&ccedil;o de 1 sach&ecirc; na Amazon, e vice-versa), sendo 10 identificados por pre&ccedil;o fora do intervalo 40%&ndash;450% e 8 por revise 7 por revis&atilde;o manualatilde;o manual.</li>
+        <li><strong>Duplicidades:</strong> 44 registros removidos &mdash; mesma oferta (EAN + vendedor + URL + pre&ccedil;o) coletada em mais de uma p&aacute;gina da listagem. Base final: 960 ofertas.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>BrandTail.AI &mdash; Pricing &amp; Trade Solutions</div>
+    <div>Estudo de competitividade &middot; Whey Protein &middot; Droga Raia vs Amazon &middot; 04/07/2026</div>
+  </div>
+</footer>
+
+<script>
+const D = {"dist": {"1": 462, "2": 130, "3": 41, "4": 13, "5": 4, "6+": 4}, "buckets": {"<90%": 80, "90-99%": 81, "~100%": 61, "100-110%": 139, "110-125%": 183, "125-150%": 247, "150-200%": 156, ">200%": 13}, "status": {"Mais caro": 747, "Mais barato": 164, "Igual": 49}, "grupos": {"1P Exclusivo": 54, "1P + 3P": 144, "3P Exclusivo": 762}};
+const navy='#0B2545', navy2='#13315C', orange='#F97316', muted='#64748B', line='#E2E8F0', green='#16A34A', red='#DC2626';
+Chart.defaults.font.family='Inter';
+Chart.defaults.color=muted;
+
+new Chart(document.getElementById('chDist'),{
+  type:'bar',
+  data:{labels:Object.keys(D.dist).map(k=>k+(k==='1'?' vendedor':' vendedores')),
+    datasets:[{data:Object.values(D.dist),backgroundColor:[navy,navy2,'#2E4E7E',orange,'#EA580C','#F59E0B'],borderRadius:8,maxBarThickness:64}]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' EANs'}}},
+    scales:{x:{grid:{display:false}},y:{grid:{color:line},title:{display:true,text:'EANs'}}}}
+});
+
+new Chart(document.getElementById('chGrupos'),{
+  type:'doughnut',
+  data:{labels:Object.keys(D.grupos),datasets:[{data:Object.values(D.grupos),backgroundColor:[navy,orange,'#94A3B8'],borderWidth:2,borderColor:'#fff'}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
+    plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>c.label+': '+c.parsed+' SKUs'}}}}
+});
+
+new Chart(document.getElementById('chBuckets'),{
+  type:'bar',
+  data:{labels:Object.keys(D.buckets),
+    datasets:[{data:Object.values(D.buckets),
+      backgroundColor:Object.keys(D.buckets).map(k=>(k==='<90%'||k==='90-99%')?green:(k==='~100%'?'#94A3B8':(k==='>200%'||k==='150-200%')?red:orange)),
+      borderRadius:6,maxBarThickness:52}]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' ofertas'}}},
+    scales:{x:{grid:{display:false}},y:{grid:{color:line},title:{display:true,text:'Ofertas'}}}}
+});
+
+new Chart(document.getElementById('chStatus'),{
+  type:'doughnut',
+  data:{labels:Object.keys(D.status),datasets:[{data:Object.values(D.status),backgroundColor:[red,green,'#94A3B8'],borderWidth:2,borderColor:'#fff'}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
+    plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>c.label+': '+c.parsed+' ofertas'}}}}
+});
+</script>
+</body>
+</html>
