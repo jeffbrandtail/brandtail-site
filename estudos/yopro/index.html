@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudo de Competitividade — YoPRO | Droga Raia vs 6 concorrentes</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'><rect width='60' height='60' rx='12' fill='%230B2545'/><path d='M16 14H32a8 8 0 010 16H16ZM16 30H34a8 8 0 010 16H16Z' fill='white'/><path d='M40 46L48 38l0 4 8 0 0 4Z' fill='%23F97316'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --navy:#0B2545;--navy-2:#13315C;--navy-deep:#061833;
+  --orange:#F97316;--orange-h:#EA580C;
+  --silver-2:#F3F4F6;--silver-3:#CBD5E1;
+  --ink:#0F172A;--muted:#64748B;--line:#E2E8F0;
+  --paper:#FAFAF9;--green:#16A34A;--red:#DC2626;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.5;}
+h1,h2,h3,h4{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-0.5px;line-height:1.1;margin:0;}
+p{margin:0;}
+.container{max-width:1200px;margin:0 auto;padding:0 28px;}
+.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:700;}
+.mono{font-family:'JetBrains Mono',monospace;}
+header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:38px;height:38px;border-radius:9px;background:var(--navy);display:grid;place-items:center;flex-shrink:0;}
+.brand-text{font-family:'Manrope';font-weight:800;font-size:19px;letter-spacing:-.5px;color:var(--navy);}
+.brand-text .ai{color:var(--orange);}
+.brand-tag{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:500;text-transform:uppercase;}
+.nav-date{font-size:13px;color:var(--muted);font-weight:500;}
+.hero{background:linear-gradient(150deg,#13315C 0%,#0B2545 60%,#061833 100%);color:#fff;padding:72px 0 64px;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.18),transparent 70%);}
+.hero h1{font-size:clamp(30px,4vw,48px);font-weight:900;letter-spacing:-1px;margin:16px 0 14px;}
+.hero h1 .hl{color:var(--orange);}
+.hero p{color:rgba(255,255,255,.65);max-width:680px;font-size:16px;}
+.hero-meta{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;}
+.hero-meta div{font-size:13px;color:rgba(255,255,255,.75);}
+.hero-meta strong{display:block;font-size:15px;color:#fff;font-family:'Manrope';}
+section{padding:56px 0 8px;}
+.sec-head{margin-bottom:28px;}
+.sec-head h2{font-size:clamp(24px,2.6vw,32px);color:var(--navy);margin-top:8px;}
+.sec-head p{color:var(--muted);margin-top:8px;max-width:780px;font-size:15px;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 20px;box-shadow:0 8px 20px -14px rgba(11,37,69,.15);}
+.card .k{font-family:'Manrope';font-size:32px;font-weight:900;color:var(--navy);letter-spacing:-1px;line-height:1;}
+.card .k.orange{color:var(--orange);}
+.card .k.green{color:var(--green);}
+.card .k.red{color:var(--red);}
+.card .l{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:8px;}
+.card .s{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45;}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:0 8px 20px -14px rgba(11,37,69,.15);}
+.panel h3{font-size:17px;color:var(--navy);margin-bottom:6px;}
+.panel .sub{font-size:13px;color:var(--muted);margin-bottom:18px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.grid-32{display:grid;grid-template-columns:3fr 2fr;gap:20px;}
+@media(max-width:900px){.grid-2,.grid-32{grid-template-columns:1fr;}}
+.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 20px -14px rgba(11,37,69,.15);}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:760px;}
+thead th{background:var(--navy);color:#fff;font-family:'Manrope';font-weight:700;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;padding:12px 14px;text-align:left;white-space:nowrap;}
+thead tr+tr th{background:var(--navy-2);}
+th.num,td.num{text-align:right;}
+th.center,td.center{text-align:center;}
+tbody td{padding:11px 14px;border-top:1px solid var(--line);vertical-align:top;}
+tbody tr:nth-child(even){background:#FBFCFE;}
+tbody tr:hover{background:#F1F5F9;}
+tbody tr.total td{background:var(--silver-2);font-weight:600;border-top:2px solid var(--silver-3);}
+table.tight{min-width:700px;}
+table.tight thead th,table.tight tbody td{padding-left:9px;padding-right:9px;}
+table.tight td:first-child{max-width:380px;}
+.td-sub{font-size:11.5px;color:var(--muted);}
+.comp{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:12.5px;padding:2px 8px;border-radius:6px;white-space:nowrap;}
+.comp.bad{background:#FEF2F2;color:var(--red);}
+.comp.good{background:#F0FDF4;color:var(--green);}
+.comp.neutral{background:var(--silver-2);color:var(--ink);}
+.chip{display:inline-block;min-width:26px;text-align:center;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11.5px;padding:2px 5px;border-radius:6px;margin:0 1px;}
+.chip.good{background:#F0FDF4;color:var(--green);}
+.chip.neutral{background:var(--silver-2);color:var(--muted);}
+.chip.bad{background:#FEF2F2;color:var(--red);}
+.chart-box{position:relative;height:300px;}
+.legend-note{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5;}
+.insight{background:linear-gradient(150deg,#13315C,#0B2545);border-radius:16px;color:#fff;padding:26px;}
+.insight h3{color:#fff;font-size:17px;margin-bottom:12px;}
+.insight ul{margin:0;padding-left:18px;color:rgba(255,255,255,.85);font-size:14px;display:flex;flex-direction:column;gap:10px;}
+.insight .hl{color:var(--orange);font-weight:700;}
+footer{margin-top:64px;background:var(--navy-deep);color:rgba(255,255,255,.55);padding:28px 0;font-size:13px;}
+footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.mt{margin-top:20px;}
+.cta{background:linear-gradient(150deg,#13315C 0%,#0B2545 55%,#061833 100%);border-radius:20px;color:#fff;padding:56px 40px;text-align:center;position:relative;overflow:hidden;}
+.cta::after{content:"";position:absolute;right:-100px;bottom:-100px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.20),transparent 70%);}
+.cta h2{color:#fff;font-size:clamp(24px,3vw,34px);margin:14px 0 12px;}
+.cta p{color:rgba(255,255,255,.72);max-width:560px;margin:0 auto;font-size:16px;}
+.btn-cta{display:inline-block;margin-top:26px;background:var(--orange);color:#fff;font-family:'Manrope';font-weight:800;font-size:16px;letter-spacing:.3px;padding:15px 38px;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -8px rgba(249,115,22,.55);transition:background .15s,transform .15s;position:relative;z-index:1;}
+.btn-cta:hover{background:var(--orange-h);transform:translateY(-1px);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container nav">
+    <div class="brand">
+      <div class="brand-mark"><svg width="22" height="22" viewBox="0 0 60 60"><path d="M16 14H32a8 8 0 010 16H16ZM16 30H34a8 8 0 010 16H16Z" fill="white"/><path d="M40 46L48 38l0 4 8 0 0 4Z" fill="#F97316"/></svg></div>
+      <div><div class="brand-text">BrandTail<span class="ai">.AI</span></div><div class="brand-tag">Pricing &amp; Trade Solutions</div></div>
+    </div>
+    <div class="nav-date mono">Coleta: 15/07/2026 &middot; Fonte: live</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="eyebrow">Estudo de Competitividade por Marca</span>
+    <h1>YoPRO &mdash; <span class="hl">Droga Raia</span> vs 6 concorrentes</h1>
+    <p>Análise de preços da marca YoPRO no site da Droga Raia comparada item a item com 6 concorrentes — agora incluindo a <strong style="color:#fff">promoção condicional "Leve Mais, Pague Menos" (LMPM)</strong>, que muda o preço real pago pelo cliente.</p>
+    <div class="hero-meta">
+      <div><strong>96</strong>comparações de preço</div>
+      <div><strong>20</strong>ofertas na Raia</div>
+      <div><strong>16</strong>EANs únicos</div>
+      <div><strong>6</strong>concorrentes</div>
+      <div><strong>52</strong>comparações com LMPM</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 1. ESCOPO ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">01 &middot; Escopo</span>
+      <h2>Escopo analisado</h2>
+      <p>Cada produto (EAN) da marca YoPRO listado na Raia foi comparado com todos os concorrentes onde foi encontrado. Uma <strong>oferta</strong> é a combinação EAN &times; vendedor no site da Raia; uma <strong>comparação</strong> é a oferta confrontada com um concorrente.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="k">96</div><div class="l">Comparações</div><div class="s">Oferta Raia &times; concorrente</div></div>
+      <div class="card"><div class="k orange">16</div><div class="l">EANs únicos</div><div class="s">Produtos distintos da marca</div></div>
+      <div class="card"><div class="k">20</div><div class="l">Ofertas na Raia</div><div class="s">Raia 1P + 3 sellers</div></div>
+      <div class="card"><div class="k">6</div><div class="l">Concorrentes</div><div class="s">Amazon, Araújo, Drogaria SP, Pague Menos, Panvel, Venâncio</div></div>
+      <div class="card"><div class="k green">54%</div><div class="l">Com LMPM</div><div class="s">52 comparações têm promoção condicional no concorrente</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. GRANDES NUMEROS ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">02 &middot; Grandes números</span>
+      <h2>Competitividade geral</h2>
+      <p>Duas leituras: <strong>preço un.</strong> (<span class="mono">preço Raia &divide; preço concorrente</span>, preço unitário sem condicional) e <strong>menor preço</strong> (usando o menor entre preço un. e LMPM de cada lado — o melhor preço unitário que o cliente consegue pagar). Acima de 100%, a Raia está mais cara.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="k red">105,6%</div><div class="l">Compet. preço un.</div><div class="s">Média das 96 comparações &middot; mediana 99,5%</div></div>
+      <div class="card"><div class="k red">105,6%</div><div class="l">Compet. menor preço</div><div class="s">LMPM dos dois lados &middot; mediana 93,9% &middot; muda em 70 de 96 comparações</div></div>
+      <div class="card"><div class="k green">66</div><div class="l">Mais barata (69%)</div><div class="s">No menor preço &middot; era 48 (50%) no preço un.</div></div>
+      <div class="card"><div class="k red">29</div><div class="l">Mais cara (30%)</div><div class="s">No menor preço &middot; era 37 (39%) no preço un.</div></div>
+      <div class="card"><div class="k">1</div><div class="l">Iguais</div><div class="s">Paridade no menor preço &middot; era 11 no preço un.</div></div>
+    </div>
+
+    <div class="panel mt">
+      <h3>Como agregar: média por item vs índice de cesta</h3>
+      <div class="sub">Duas formas corretas de resumir as 96 comparações — que respondem perguntas diferentes e podem apontar direções diferentes</div>
+      <div class="table-wrap" style="box-shadow:none;border-radius:10px;">
+        <table style="min-width:640px;">
+          <thead>
+            <tr><th>Métrica</th><th class="num">Preço un.</th><th class="num">Menor preço (LMPM)</th><th>O que responde</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Média por item</strong> (média das razões)<div class="td-sub">Cada comparação vale 1/96, independente do preço do item. Métrica usada neste estudo.</div></td>
+              <td class="num"><span class="comp bad">105,6%</span></td>
+              <td class="num"><span class="comp bad">105,6%</span></td>
+              <td class="td-sub">"Em um item típico do sortimento, quão distante a Raia está do concorrente?" Lê o posicionamento item a item, sem deixar poucos SKUs caros dominarem.</td>
+            </tr>
+            <tr>
+              <td><strong>Índice de cesta</strong> (razão das somas)<div class="td-sub">&Sigma; preço Raia &divide; &Sigma; preço concorrente. Cada item pesa proporcional ao seu preço.</div></td>
+              <td class="num"><span class="comp bad">109,9%</span></td>
+              <td class="num"><span class="comp bad">111,8%</span></td>
+              <td class="td-sub">"Quanto custaria comprar a cesta inteira na Raia vs no concorrente?" Sensível aos itens de maior tíquete.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="legend-note" style="font-size:13px;">
+        <strong>Por que os números divergem?</strong> Na cesta, os 5 itens mais caros carregam sozinhos <strong>19,1%</strong> do peso total — e neles a competitividade média é de <strong>124,7%</strong>, puxando o índice para cima. Na média por item, esses mesmos itens valem apenas 5/96 da conta.<br><br>
+        <strong>Por que o LMPM piora a cesta (109,9% &rarr; 111,8%) mas não a média por item (105,6% &rarr; 105,6%)?</strong> O LMPM da Raia está concentrado nos itens de tíquete menor (preço médio de R$ 9,99 nos itens com LMPM, vs R$ 14,64 da base) — descontos que quase não movem a soma. Já o LMPM dos concorrentes derruba o denominador em itens de peso maior. Na soma, o efeito deles domina; na média por item, cada linha vota igual e os dois efeitos praticamente se anulam.<br><br>
+        <strong>Qual usar?</strong> As duas são complementares. O refinamento ideal do índice de cesta é ponderar pela <strong>venda de cada SKU</strong> (receita ou unidades) em vez do preço — peso proporcional à relevância comercial real. Sem o dado de venda, a média por item acompanhada da mediana é a leitura mais defensável de posicionamento, e a cesta funciona como visão complementar de bolso do cliente.
+      </div>
+    </div>
+
+    <div class="grid-2 mt">
+      <div class="panel">
+        <h3>Distribuição da competitividade</h3>
+        <div class="sub">Quantidade de comparações por faixa — preço un. vs menor preço (com LMPM)</div>
+        <div class="chart-box"><canvas id="chBuckets"></canvas></div>
+        <div class="legend-note">A mediana (93,9% no menor preço) abaixo da média (105,6%) indica cauda de ofertas muito caras puxando a média — concentradas nos sellers 3P.</div>
+      </div>
+      <div class="insight">
+        <h3>Resumo executivo</h3>
+        <ul>
+          <li>No preço un., a Raia é mais barata em <span class="hl">50%</span> das comparações. Considerando o LMPM dos dois lados, sobe para <span class="hl">69%</span> — o LMPM da Raia é uma arma competitiva real.</li>
+          <li>A média parecida entre as duas visões <span class="hl">esconde dois movimentos opostos que quase se anulam</span>: só o LMPM da Raia levaria a média a <span class="hl">86,9%</span>; só o dos concorrentes, a <span class="hl">130,6%</span>. O valor muda em 70 das 96 comparações.</li>
+          <li>Na visão de <span class="hl">cesta</span> (razão das somas), a competitividade é 109,9% no preço un. e 111,8% no menor preço — os itens de maior tíquete pesam mais e contam outra história (veja o painel ao lado).</li>
+          <li>O concorrente mais agressivo no preço un. é <span class="hl">Venâncio</span> (121,2%); no menor preço, é <span class="hl">Pague Menos</span> (113,1%).</li>
+          <li>O LMPM <span class="hl">inverte o jogo</span>: contra Amazon, Venâncio a Raia ganha vantagem; contra Panvel, Drogaria SP a vantagem no preço un. desaparece quando o LMPM deles entra na conta.</li>
+          <li>Quem olha só preço de vitrine <span class="hl">enxerga o mercado errado</span>: 54% das comparações têm promoção condicional no concorrente.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. POR CONCORRENTE ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">03 &middot; Por concorrente</span>
+      <h2>Competitividade por concorrente</h2>
+      <p>Visão completa por player: competitividade no preço un. e no menor preço (média por item, conceito da seção 02), posição da Raia (mais barata &middot; igual &middot; mais cara), uso de LMPM, corte mais frequente e profundidade média do desconto condicional.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">Concorrente</th>
+            <th class="num" rowspan="2">Compara&ccedil;&otilde;es</th>
+            <th class="num" rowspan="2">Compet.<br>pre&ccedil;o un.</th>
+            <th class="num" rowspan="2">Compet.<br>menor pre&ccedil;o</th>
+            <th class="center" colspan="2">Posi&ccedil;&atilde;o Raia (barata &middot; igual &middot; cara)</th>
+            <th class="num" rowspan="2">Itens c/<br>LMPM</th>
+            <th class="center" rowspan="2">Corte +<br>comum</th>
+            <th class="num" rowspan="2">Desc. m&eacute;dio<br>LMPM</th>
+          </tr>
+          <tr>
+            <th class="center">Pre&ccedil;o un.</th>
+            <th class="center">Menor pre&ccedil;o</th>
+          </tr>
+        </thead>
+        <tbody>
+<tr>
+<td><strong>Panvel</strong></td>
+<td class="num">16</td>
+<td class="num"><span class="comp good">95,3%</span><div class="td-sub">mediana 82,8%</div></td>
+<td class="num"><span class="comp bad">112,2%</span><div class="td-sub">mediana 98,0%</div></td>
+<td class="center"><span class="chip good">12</span><span class="chip neutral">0</span><span class="chip bad">4</span></td>
+<td class="center"><span class="chip good">12</span><span class="chip neutral">0</span><span class="chip bad">4</span></td>
+<td class="num">12 <span class="td-sub">de 16</span></td>
+<td class="center">Leve 6</td>
+<td class="num">-41,1%</td>
+</tr>
+<tr>
+<td><strong>Drogaria SP</strong></td>
+<td class="num">16</td>
+<td class="num"><span class="comp good">98,1%</span><div class="td-sub">mediana 91,4%</div></td>
+<td class="num"><span class="comp bad">112,0%</span><div class="td-sub">mediana 92,7%</div></td>
+<td class="center"><span class="chip good">11</span><span class="chip neutral">0</span><span class="chip bad">5</span></td>
+<td class="center"><span class="chip good">10</span><span class="chip neutral">1</span><span class="chip bad">5</span></td>
+<td class="num">16 <span class="td-sub">de 16</span></td>
+<td class="center">Leve 3</td>
+<td class="num">-30,0%</td>
+</tr>
+<tr>
+<td><strong>Araújo</strong></td>
+<td class="num">16</td>
+<td class="num"><span class="comp bad">101,1%</span><div class="td-sub">mediana 97,9%</div></td>
+<td class="num"><span class="comp bad">105,4%</span><div class="td-sub">mediana 90,5%</div></td>
+<td class="center"><span class="chip good">9</span><span class="chip neutral">4</span><span class="chip bad">3</span></td>
+<td class="center"><span class="chip good">12</span><span class="chip neutral">0</span><span class="chip bad">4</span></td>
+<td class="num">12 <span class="td-sub">de 16</span></td>
+<td class="center">Leve 3</td>
+<td class="num">-31,1%</td>
+</tr>
+<tr>
+<td><strong>Amazon</strong></td>
+<td class="num">16</td>
+<td class="num"><span class="comp bad">108,6%</span><div class="td-sub">mediana 102,7%</div></td>
+<td class="num"><span class="comp good">93,2%</span><div class="td-sub">mediana 76,3%</div></td>
+<td class="center"><span class="chip good">8</span><span class="chip neutral">0</span><span class="chip bad">8</span></td>
+<td class="center"><span class="chip good">10</span><span class="chip neutral">0</span><span class="chip bad">6</span></td>
+<td class="num"><span class="td-sub">não pratica</span></td>
+<td class="center">—</td>
+<td class="num">—</td>
+</tr>
+<tr>
+<td><strong>Pague Menos</strong></td>
+<td class="num">18</td>
+<td class="num"><span class="comp bad">110,8%</span><div class="td-sub">mediana 100,0%</div></td>
+<td class="num"><span class="comp bad">113,1%</span><div class="td-sub">mediana 95,1%</div></td>
+<td class="center"><span class="chip good">6</span><span class="chip neutral">6</span><span class="chip bad">6</span></td>
+<td class="center"><span class="chip good">12</span><span class="chip neutral">0</span><span class="chip bad">6</span></td>
+<td class="num">12 <span class="td-sub">de 18</span></td>
+<td class="center">Leve 3</td>
+<td class="num">-28,5%</td>
+</tr>
+<tr>
+<td><strong>Venâncio</strong></td>
+<td class="num">14</td>
+<td class="num"><span class="comp bad">121,2%</span><div class="td-sub">mediana 111,8%</div></td>
+<td class="num"><span class="comp good">95,8%</span><div class="td-sub">mediana 74,9%</div></td>
+<td class="center"><span class="chip good">2</span><span class="chip neutral">1</span><span class="chip bad">11</span></td>
+<td class="center"><span class="chip good">10</span><span class="chip neutral">0</span><span class="chip bad">4</span></td>
+<td class="num"><span class="td-sub">não pratica</span></td>
+<td class="center">—</td>
+<td class="num">—</td>
+</tr>
+<tr class="total">
+<td><strong>Total</strong></td>
+<td class="num">96</td>
+<td class="num"><span class="comp bad">105,6%</span><div class="td-sub">mediana 99,5%</div></td>
+<td class="num"><span class="comp bad">105,6%</span><div class="td-sub">mediana 93,9%</div></td>
+<td class="center"><span class="chip good">48</span><span class="chip neutral">11</span><span class="chip bad">37</span></td>
+<td class="center"><span class="chip good">66</span><span class="chip neutral">1</span><span class="chip bad">29</span></td>
+<td class="num">52 <span class="td-sub">de 96</span></td>
+<td class="center">—</td>
+<td class="num">—</td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 mt">
+      <div class="panel">
+        <h3>Preço un. vs menor preço, por concorrente</h3>
+        <div class="sub">Competitividade média da Raia contra cada player — a linha em 100% é a paridade</div>
+        <div class="chart-box"><canvas id="chComp"></canvas></div>
+        <div class="legend-note">Barras acima de 100% = Raia mais cara. Compare as duas barras de cada player: quando a laranja (menor preço) sobe em relação à azul, o LMPM do concorrente é mais forte que o da Raia.</div>
+      </div>
+      <div class="panel">
+        <h3>Posição da Raia: preço un. vs menor preço</h3>
+        <div class="sub">Nº de comparações em que a Raia está mais barata, igual ou mais cara</div>
+        <div class="chart-box"><canvas id="chStatus"></canvas></div>
+        <div class="legend-note">Contra Amazon e Venâncio, que não praticam LMPM nos itens comparados, o LMPM da Raia vira diferencial direto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. LMPM ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">04 &middot; Leve Mais, Pague Menos</span>
+      <h2>O efeito LMPM</h2>
+      <p>O LMPM ("leve 3, pague menos") derruba o preço unitário para quem leva a quantidade de corte. É onde a guerra de preço realmente acontece nessa categoria — e é invisível para quem monitora só o preço de vitrine.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="k orange">10<span style="font-size:18px;color:var(--muted)">/20</span></div><div class="l">Ofertas Raia c/ LMPM</div><div class="s">50% do sortimento da marca</div></div>
+      <div class="card"><div class="k">Leve 3</div><div class="l">Corte da Raia</div><div class="s">Quantidade para ativar o desconto</div></div>
+      <div class="card"><div class="k green">33,0%</div><div class="l">Desconto médio Raia</div><div class="s">LMPM vs preço unitário</div></div>
+      <div class="card"><div class="k">4<span style="font-size:18px;color:var(--muted)">/6</span></div><div class="l">Concorrentes c/ LMPM</div><div class="s">Amazon e Venâncio não praticam nos itens comparados</div></div>
+      <div class="card"><div class="k green">86,9%</div><div class="l">Só LMPM Raia</div><div class="s">Competitividade média se apenas o LMPM da Raia contasse (vs 105,6% no preço un.)</div></div>
+      <div class="card"><div class="k red">130,6%</div><div class="l">Só LMPM concorrentes</div><div class="s">Competitividade média se apenas o LMPM deles contasse — o risco de não reagir</div></div>
+    </div>
+
+    <div class="grid-2 mt">
+      <div class="panel">
+        <h3>Profundidade do desconto LMPM</h3>
+        <div class="sub">Desconto médio do preço LMPM sobre o preço unitário, por player</div>
+        <div class="chart-box"><canvas id="chDesc"></canvas></div>
+        <div class="legend-note">Desconto maior exige corte maior? Nem sempre — veja o corte praticado no gráfico ao lado.</div>
+      </div>
+      <div class="panel">
+        <h3>Cortes praticados</h3>
+        <div class="sub">Nº de ocorrências de cada corte ("leve N") — Raia vs concorrentes</div>
+        <div class="chart-box"><canvas id="chCorte"></canvas></div>
+        <div class="legend-note">O corte define a barreira de entrada da promoção: corte alto aprofunda o desconto, mas exige mais desembolso do cliente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. RAIA VS MENOR PRECO ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">05 &middot; Item a item</span>
+      <h2>Raia vs o menor preço do mercado</h2>
+      <p>Para cada oferta, o melhor preço da Raia (com LMPM) contra o melhor preço entre todos os concorrentes (com LMPM). É o cenário mais duro: a Raia contra o mercado inteiro. Média: <strong>122,5%</strong> &middot; mediana: <strong>98,0%</strong> &middot; a Raia vence em 11 e perde em 9 das 20 ofertas.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="tight">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th class="num">Pre&ccedil;o Raia</th>
+            <th class="num">LMPM Raia</th>
+            <th class="num">Pre&ccedil;o conc.<br><span style="font-weight:400;opacity:.75">mais barato</span></th>
+            <th class="num">LMPM conc.</th>
+            <th class="num">Compet.</th>
+          </tr>
+        </thead>
+        <tbody>
+<tr>
+<td>Yopro - 1 Barra 55G Morango com Chocolate Branco - Nutrata<div class="td-sub">6 concorrentes comparados · seller: Otimanutri</div></td>
+<td class="num">R$ 22,40</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 9,99<div class="td-sub">Venâncio</div></td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num"><span class="comp bad">224,2%</span></td>
+</tr>
+<tr>
+<td>Shake Proteico Danone Yopro Proteína 15g Coco 250ml<div class="td-sub">6 concorrentes comparados · seller: Capital Fitness</div></td>
+<td class="num">R$ 11,99</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Panvel</div></td>
+<td class="num">R$ 6,49 <span class="td-sub">leve 6</span></td>
+<td class="num"><span class="comp bad">184,7%</span></td>
+</tr>
+<tr>
+<td>Shake Proteico Danone Yopro Proteína 15g Morango 250ml<div class="td-sub">6 concorrentes comparados · seller: Capital Fitness</div></td>
+<td class="num">R$ 11,99</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Panvel</div></td>
+<td class="num">R$ 6,49 <span class="td-sub">leve 6</span></td>
+<td class="num"><span class="comp bad">184,7%</span></td>
+</tr>
+<tr>
+<td>Yopro - 1 Barra 55G Chocolate - Nutrata<div class="td-sub">5 concorrentes comparados · seller: Otimanutri</div></td>
+<td class="num">R$ 22,40</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 12,89<div class="td-sub">Araújo</div></td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num"><span class="comp bad">173,8%</span></td>
+</tr>
+<tr>
+<td>Yopro - 12 Barras 55G Morango com Chocolate Branco - Nutrata<div class="td-sub">1 concorrentes comparados · seller: Otimanutri</div></td>
+<td class="num">R$ 146,98</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 98,00<div class="td-sub">Amazon</div></td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num"><span class="comp bad">150,0%</span></td>
+</tr>
+<tr>
+<td>Barra Proteica Yopro - Sabor Chocolate - 12 Unidades de 55G - Nutrata<div class="td-sub">1 concorrentes comparados · seller: Mix Age Dual Store</div></td>
+<td class="num">R$ 128,90</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 95,00<div class="td-sub">Amazon</div></td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num"><span class="comp bad">135,7%</span></td>
+</tr>
+<tr>
+<td>Barra de Proteína Nutrata Yopro Morango com Chocolate Branco 55g<div class="td-sub">6 concorrentes comparados</div></td>
+<td class="num">R$ 12,59</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 9,99<div class="td-sub">Venâncio</div></td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num"><span class="comp bad">126,0%</span></td>
+</tr>
+<tr>
+<td>YoPRO Energy Boost UHT Cappuccino 15g de Proteínas 250ml<div class="td-sub">6 concorrentes comparados</div></td>
+<td class="num">R$ 10,79</td>
+<td class="num">R$ 7,23 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 9,49<div class="td-sub">Pague Menos</div></td>
+<td class="num">R$ 6,69 <span class="td-sub">leve 3</span></td>
+<td class="num"><span class="comp bad">108,1%</span></td>
+</tr>
+<tr>
+<td>YoPRO Energy Boost UHT Café Expresso 15g de Proteínas 250ml<div class="td-sub">6 concorrentes comparados</div></td>
+<td class="num">R$ 10,39</td>
+<td class="num">R$ 6,96 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 9,49<div class="td-sub">Pague Menos</div></td>
+<td class="num">R$ 6,69 <span class="td-sub">leve 3</span></td>
+<td class="num"><span class="comp bad">104,0%</span></td>
+</tr>
+<tr>
+<td>YoPRO Bebida Láctea UHT Banana 15g de Proteínas 250ml<div class="td-sub">6 concorrentes comparados</div></td>
+<td class="num">R$ 9,49</td>
+<td class="num">R$ 6,36 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Panvel</div></td>
+<td class="num">R$ 6,49 <span class="td-sub">leve 6</span></td>
+<td class="num"><span class="comp good">98,0%</span></td>
+</tr>
+<tr>
+<td>YoPRO Bebida Láctea UHT Coco com Batata-Doce 15g de Proteínas 250ml<div class="td-sub">6 concorrentes comparados</div></td>
+<td class="num">R$ 9,49</td>
+<td class="num">R$ 6,36 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Panvel</div></td>
+<td class="num">R$ 6,49 <span class="td-sub">leve 6</span></td>
+<td class="num"><span class="comp good">98,0%</span></td>
+</tr>
+<tr>
+<td>YoPRO Bebida Láctea UHT Chocolate 15g de Proteínas 250ml<div class="td-sub">6 concorrentes comparados</div></td>
+<td class="num">R$ 9,49</td>
+<td class="num">R$ 6,36 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Panvel</div></td>
+<td class="num">R$ 6,49 <span class="td-sub">leve 6</span></td>
+<td class="num"><span class="comp good">98,0%</span></td>
+</tr>
+<tr>
+<td>YoPRO Bebida Láctea UHT Morango 15g de Proteínas 250ml<div class="td-sub">6 concorrentes comparados</div></td>
+<td class="num">R$ 9,49</td>
+<td class="num">R$ 6,36 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Panvel</div></td>
+<td class="num">R$ 6,49 <span class="td-sub">leve 6</span></td>
+<td class="num"><span class="comp good">98,0%</span></td>
+</tr>
+<tr>
+<td>Bebida Láctea YoPro Baunilha 15g Proteína 250ml<div class="td-sub">5 concorrentes comparados</div></td>
+<td class="num">R$ 9,49</td>
+<td class="num">R$ 6,36 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Panvel</div></td>
+<td class="num">R$ 6,49 <span class="td-sub">leve 6</span></td>
+<td class="num"><span class="comp good">98,0%</span></td>
+</tr>
+<tr>
+<td>Bebida Láctea YoPro Doce de Leite Havanna 15g Proteína 250ml<div class="td-sub">5 concorrentes comparados</div></td>
+<td class="num">R$ 9,49</td>
+<td class="num">R$ 6,36 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Panvel</div></td>
+<td class="num">R$ 6,49 <span class="td-sub">leve 6</span></td>
+<td class="num"><span class="comp good">98,0%</span></td>
+</tr>
+<tr>
+<td>Barra de Proteína Nutrata Yopro Chocolate 55g<div class="td-sub">5 concorrentes comparados</div></td>
+<td class="num">R$ 12,59</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 12,89<div class="td-sub">Araújo</div></td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num"><span class="comp good">97,7%</span></td>
+</tr>
+<tr>
+<td>YoPRO Bebida Láctea UHT Chocolate 25g de proteínas 250ml<div class="td-sub">1 concorrentes comparados</div></td>
+<td class="num">R$ 10,79</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Pague Menos</div></td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num"><span class="comp good">93,9%</span></td>
+</tr>
+<tr>
+<td>YoPRO Bebida Láctea UHT Milkshake de Baunilha 25g de proteínas 250ml<div class="td-sub">1 concorrentes comparados</div></td>
+<td class="num">R$ 10,79</td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num">R$ 11,49<div class="td-sub">Pague Menos</div></td>
+<td class="num"><span class="td-sub">—</span></td>
+<td class="num"><span class="comp good">93,9%</span></td>
+</tr>
+<tr>
+<td>YoPRO Bebida Láctea UHT Baunilha 23g de Proteínas 250ml<div class="td-sub">6 concorrentes comparados</div></td>
+<td class="num">R$ 10,79</td>
+<td class="num">R$ 7,23 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 11,69<div class="td-sub">Drogaria SP</div></td>
+<td class="num">R$ 7,79 <span class="td-sub">leve 3</span></td>
+<td class="num"><span class="comp good">92,8%</span></td>
+</tr>
+<tr>
+<td>YoPRO Bebida Láctea UHT Chocolate 23g de Proteínas 250ml<div class="td-sub">6 concorrentes comparados</div></td>
+<td class="num">R$ 10,79</td>
+<td class="num">R$ 7,23 <span class="td-sub">leve 3</span></td>
+<td class="num">R$ 11,69<div class="td-sub">Drogaria SP</div></td>
+<td class="num">R$ 7,79 <span class="td-sub">leve 3</span></td>
+<td class="num"><span class="comp good">92,8%</span></td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend-note">"Preço conc." e "LMPM conc." são do concorrente com o menor preço efetivo para o item (nome abaixo do preço). A competitividade compara o menor preço da Raia (preço un. ou LMPM) com o menor entre as duas colunas do concorrente.</div>
+
+    <div class="grid-2 mt" style="grid-template-columns:1fr;">
+      <div class="insight">
+        <h3>Onde o gap está concentrado</h3>
+        <ul>
+          <li>As maiores perdas de competitividade estão nas ofertas de <span class="hl">sellers 3P</span> e em itens sem LMPM na Raia — o topo da tabela mostra gaps de até <span class="hl">224,2%</span>.</li>
+          <li><span class="hl">4 EANs aparecem duplicados</span> no site da Raia, vendidos também por sellers (Capital Fitness, Mix Age Dual Store, Otimanutri) com nomes diferentes e preços até <span class="hl">78% maiores</span> que a oferta 1P: R$ 9,49 → R$ 11,99 (+26%); R$ 9,49 → R$ 11,99 (+26%); R$ 12,59 → R$ 22,40 (+78%). Além de piorar a competitividade, confunde o cliente e polui o sortimento.</li>
+          <li>Nas ofertas 1P com LMPM ativo, a Raia opera <span class="hl">colada ou abaixo do melhor preço do mercado</span> — evidência de que a mecânica condicional sustenta a competitividade sem sacrificar o preço unitário de vitrine.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. NOTAS ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">06 &middot; Metodologia</span>
+      <h2>Notas e definições</h2>
+    </div>
+    <div class="panel">
+      <ul style="margin:0;padding-left:18px;color:var(--muted);font-size:14px;display:flex;flex-direction:column;gap:8px;">
+        <li><strong>Competitividade</strong> = preço Raia &divide; preço concorrente &times; 100. Abaixo de 100% a Raia está mais barata; acima, mais cara. Tolerância de &plusmn;0,5 p.p. para "igual".</li>
+        <li><strong>Preço un.</strong>: preço unitário cheio, sem promoções condicionais.</li>
+        <li><strong>Menor preço</strong>: menor valor entre preço un. e preço LMPM de cada lado. O LMPM ("leve mais, pague menos") aplica o preço unitário reduzido quando o cliente leva a quantidade de corte (<span class="mono">corte_lmpm</span>).</li>
+        <li><strong>Média por item</strong> (média das razões): média das competitividades linha a linha — cada comparação tem o mesmo peso. <strong>Índice de cesta</strong> (razão das somas): &Sigma; preço Raia &divide; &Sigma; preço concorrente — cada item pesa proporcional ao preço. Salvo indicação, o estudo usa a média por item.</li>
+        <li>Comparações entre preços LMPM com cortes diferentes assumem que o cliente atinge o corte de cada player — é o melhor preço unitário atingível em cada site.</li>
+        <li>Coleta em <strong>15/07/2026</strong> (live), direto das páginas de produto de cada site. Matching por EAN.</li>
+        <li>Estudo gerado automaticamente a partir do arquivo <span class="mono">yopro.xlsx</span> — modelo replicável para qualquer marca.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section>
+  <div class="container">
+    <div class="cta">
+      <span class="eyebrow">InSite &middot; by BrandTail.AI</span>
+      <h2>Esses dados foram extraídos com o plugin InSite</h2>
+      <p>Navegue e veja os preços de 12 concorrentes direto nas páginas do site da Droga Raia — preço un., LMPM e disponibilidade, sem sair da página do produto.</p>
+      <a class="btn-cta" href="https://insite.brandtail.ai/" target="_blank" rel="noopener">Quero testar</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>BrandTail<span style="color:var(--orange)">.AI</span> &middot; Pricing &amp; Trade Solutions</div>
+    <div>Estudo de competitividade &middot; YoPRO &middot; Droga Raia vs 6 concorrentes &middot; 15/07/2026</div>
+  </div>
+</footer>
+
+<script>
+const D = {"concLabels": ["Panvel", "Drogaria SP", "Araújo", "Amazon", "Pague Menos", "Venâncio"], "compUnit": [95.3, 98.1, 101.1, 108.6, 110.8, 121.2], "compEf": [112.2, 112.0, 105.4, 93.2, 113.1, 95.8], "stU": [[12, 11, 9, 8, 6, 2], [0, 0, 4, 0, 6, 1], [4, 5, 3, 8, 6, 11]], "stE": [[12, 10, 12, 10, 12, 10], [0, 1, 0, 0, 0, 0], [4, 5, 4, 6, 6, 4]], "bkLabels": ["< 80%", "80–95%", "95–100%", "≈100%", "100–105%", "105–120%", "> 120%"], "bkUnit": [14, 25, 9, 11, 4, 11, 22], "bkEf": [23, 27, 16, 1, 2, 2, 25], "corteLabels": ["Leve 3", "Leve 4", "Leve 6"], "corteConc": [34, 6, 12], "corteRaia": [10, 0, 0], "descLabels": ["Raia", "Panvel", "Drogaria SP", "Araújo", "Amazon", "Pague Menos", "Venâncio"], "descVals": [33.0, 41.1, 30.0, 31.1, 0, 28.5, 0]};
+const NAVY='#0B2545', NAVY2='#4A6FA5', ORANGE='#F97316', GREEN='#16A34A', RED='#DC2626', SILVER='#CBD5E1', MUTED='#94A3B8';
+Chart.defaults.font.family='Inter';
+Chart.defaults.color='#64748B';
+const pctTick = v => v+'%';
+
+new Chart(document.getElementById('chBuckets'),{
+  type:'bar',
+  data:{labels:D.bkLabels,datasets:[
+    {label:'Preço un.',data:D.bkUnit,backgroundColor:NAVY,borderRadius:5},
+    {label:'Menor preço (LMPM)',data:D.bkEf,backgroundColor:ORANGE,borderRadius:5}
+  ]},
+  options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}}
+});
+
+new Chart(document.getElementById('chComp'),{
+  type:'bar',
+  data:{labels:D.concLabels,datasets:[
+    {label:'Preço un.',data:D.compUnit,backgroundColor:NAVY,borderRadius:5},
+    {label:'Menor preço (LMPM)',data:D.compEf,backgroundColor:ORANGE,borderRadius:5},
+    {type:'line',label:'Paridade (100%)',data:D.concLabels.map(()=>100),borderColor:RED,borderDash:[6,4],borderWidth:1.5,pointRadius:0}
+  ]},
+  options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{ticks:{callback:pctTick}}}}
+});
+
+new Chart(document.getElementById('chStatus'),{
+  type:'bar',
+  data:{labels:D.concLabels.flatMap(c=>[c+' · preço un.',c+' · menor']),datasets:[
+    {label:'Raia mais barata',data:D.concLabels.flatMap((c,i)=>[D.stU[0][i],D.stE[0][i]]),backgroundColor:GREEN,borderRadius:4},
+    {label:'Igual',data:D.concLabels.flatMap((c,i)=>[D.stU[1][i],D.stE[1][i]]),backgroundColor:SILVER,borderRadius:4},
+    {label:'Raia mais cara',data:D.concLabels.flatMap((c,i)=>[D.stU[2][i],D.stE[2][i]]),backgroundColor:RED,borderRadius:4}
+  ]},
+  options:{indexAxis:'y',maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},
+    scales:{x:{stacked:true,ticks:{precision:0}},y:{stacked:true,ticks:{font:{size:10}}}}}
+});
+
+new Chart(document.getElementById('chDesc'),{
+  type:'bar',
+  data:{labels:D.descLabels,datasets:[{label:'Desconto médio LMPM',data:D.descVals,
+    backgroundColor:D.descLabels.map(l=>l==='Raia'?ORANGE:NAVY),borderRadius:5}]},
+  options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+'%'}}},
+    scales:{y:{beginAtZero:true,ticks:{callback:pctTick}}}}
+});
+
+new Chart(document.getElementById('chCorte'),{
+  type:'bar',
+  data:{labels:D.corteLabels,datasets:[
+    {label:'Raia',data:D.corteRaia,backgroundColor:ORANGE,borderRadius:5},
+    {label:'Concorrentes',data:D.corteConc,backgroundColor:NAVY,borderRadius:5}
+  ]},
+  options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}}
+});
+</script>
+</body>
+</html>
