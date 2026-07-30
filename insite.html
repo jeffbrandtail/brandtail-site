@@ -391,12 +391,6 @@
           <form id="trial-form" novalidate>
             <h2>Comece seu trial gratuito</h2>
 
-            <div class="field" id="field-nome">
-              <label for="nome">Nome completo</label>
-              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" required />
-              <span class="field-error">Informe seu nome completo.</span>
-            </div>
-
             <div class="field" id="field-email">
               <label for="email">Email corporativo</label>
               <input type="email" id="email" name="email" placeholder="voce@suaempresa.com.br" autocomplete="email" required />
@@ -474,6 +468,21 @@
 
   <script>
     (function () {
+      // ATUALIZADO 2026-07-30: /api/cadastro (functions/api/cadastro.js)
+      // aposentado — lia trials/{email} via REST API + API key pública, e
+      // isso é bloqueado pelas Firestore Security Rules (allow read, write:
+      // if false, só Admin SDK) desde 12/07. O código só tratava HTTP 404
+      // como "não existe ainda"; um 403 de permissão caía direto no throw,
+      // virava "erro_interno" — exatamente o "Algo deu errado" que aparecia
+      // pra todo mundo. Agora aponta pro createTrial do projeto
+      // insite-pm-cfd89 (Admin SDK, sem esse problema de permissão),
+      // testado ponta a ponta em 2026-07-30: cadastro → email via Resend →
+      // link mágico → trial ativo no Firestore → link de instalação da
+      // Chrome Web Store. Campo "Nome completo" removido — createTrial não
+      // usa nome, só email (decisão consciente: simplificar em vez de
+      // estender o backend pra aceitar nome, ver histórico da sessão).
+      var CREATE_TRIAL_URL = 'https://us-central1-insite-pm-cfd89.cloudfunctions.net/createTrial';
+
       var form = document.getElementById('trial-form');
       var feedback = document.getElementById('feedback');
       var fbIcon = document.getElementById('fb-icon');
@@ -482,18 +491,10 @@
       var backBtn = document.getElementById('back-btn');
       var submitBtn = document.getElementById('submit-btn');
 
-      var nomeInput = document.getElementById('nome');
       var emailInput = document.getElementById('email');
-      var fieldNome = document.getElementById('field-nome');
       var fieldEmail = document.getElementById('field-email');
 
       var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-      function validateNome(showError) {
-        var ok = nomeInput.value.trim().length >= 3;
-        setFieldState(fieldNome, ok, showError);
-        return ok;
-      }
 
       function validateEmail(showError) {
         var ok = EMAIL_RE.test(emailInput.value.trim());
@@ -511,9 +512,7 @@
       }
 
       // Feedback visual em tempo real
-      nomeInput.addEventListener('input', function () { validateNome(false); });
       emailInput.addEventListener('input', function () { validateEmail(false); });
-      nomeInput.addEventListener('blur', function () { validateNome(true); });
       emailInput.addEventListener('blur', function () { validateEmail(true); });
 
       function showFeedback(icon, title, messageHtml) {
@@ -538,42 +537,34 @@
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        var nomeOk = validateNome(true);
         var emailOk = validateEmail(true);
-        if (!nomeOk || !emailOk) return;
+        if (!emailOk) return;
 
-        var nome = nomeInput.value.trim();
         var email = emailInput.value.trim().toLowerCase();
 
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span class="spinner"></span>Enviando...';
 
         try {
-          var res = await fetch('/api/cadastro', {
+          var res = await fetch(CREATE_TRIAL_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nome: nome, email: email })
+            body: JSON.stringify({ email: email })
           });
 
           var data = await res.json();
 
-          if (data.success && data.tipo === 'automatico') {
+          if (data.status === 'created' || data.status === 'resent') {
             showFeedback(
               '✅',
-              'Acesso liberado!',
-              'Enviamos as instruções para <strong>' + escapeHtml(email) + '</strong>.<br>Verifique sua caixa de entrada.'
-            );
-          } else if (data.success && data.tipo === 'aguardando') {
-            showFeedback(
-              '⏳',
               'Cadastro recebido!',
-              'Seu acesso está em análise.<br>Você receberá uma resposta em até 48 horas.'
+              'Enviamos um link de ativação para <strong>' + escapeHtml(email) + '</strong>.<br>Verifique sua caixa de entrada (e o spam) e clique no link pra ativar seu trial de 30 dias.'
             );
-          } else if (data.error === 'email_ja_cadastrado') {
+          } else if (data.status === 'already_active') {
             showFeedback(
               'ℹ️',
-              'Email já cadastrado.',
-              'Verifique sua caixa de entrada ou<br>entre em contato: <a href="mailto:contato@brandtail.ai">contato@brandtail.ai</a>'
+              'Você já tem acesso!',
+              'Esse email já está ativo.<br>Instale a extensão e faça login com <strong>' + escapeHtml(email) + '</strong>.'
             );
           } else {
             showFeedback(
