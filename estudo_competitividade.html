@@ -884,7 +884,7 @@ async function shareResultImage(nomeMarca){
       }
 
       const fileName = `${slugify(nomeMarca)}-brandtail-ai.png`;
-      const shareText = `Confira a competitividade de preço de ${nomeMarca} vs Amazon, Pague Menos e Drogaria São Paulo — brandtail.ai`;
+      const shareText = `Confira a competitividade de preço de ${nomeMarca} da DrogaRaia vs Amazon, Pague Menos e Drogaria São Paulo. Confira o estudo completo em https://brandtail.ai/estudo_competitividade`;
       const file = new File([blob], fileName, {type:'image/png'});
 
       if (navigator.canShare && navigator.canShare({files:[file]})){
